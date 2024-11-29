@@ -1,4 +1,5 @@
 import { RequestSerializer, ResponseSerializer } from "@/lib/serializer";
+import { RecursivePartial, resolveOptions } from "../utils";
 
 export type RequestState = {
     request: Request;
@@ -12,12 +13,9 @@ export type RequestOptions = {
     reuse: boolean;
 };
 
-export function resolveRequestOptions(options: Partial<RequestOptions> | undefined): RequestOptions {
-    return {
-        reuse: false,
-        ...options,
-    };
-}
+const defaultOptions: RequestOptions = {
+    reuse: false,
+};
 
 export abstract class RequestHandler {
     protected stateMap: WeakMap<Request, RequestState>;
@@ -36,8 +34,8 @@ export abstract class RequestHandler {
 
     protected abstract process(request: Request): Promise<Response>;
 
-    public async request(request: Request, options?: Partial<RequestOptions>): Promise<Response> {
-        const resolvedOptions = resolveRequestOptions(options);
+    public async request(request: Request, options?: RecursivePartial<RequestOptions>): Promise<Response> {
+        const resolvedOptions = resolveOptions(options, defaultOptions);
         const state = this.acquireState(request, resolvedOptions);
 
         const promise = state.promise ?? this.process(request).then(response => {

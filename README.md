@@ -22,6 +22,7 @@
 - add option to turnoff source maps
 - add custom logger
 - try WebTransport API as alternative for WebSockets?
+- add version validation between client and service-worker to force update
  
 # Potential problems
 
@@ -44,7 +45,6 @@
 - add custom options to plugin features
 - add logic to align with features options
 
-
 # New thoughts
 
 - let handlers be transports
@@ -61,4 +61,4 @@
 - let module transport consist of cache, serialize, compress, (pool -> socket, socket, fetch, buffered) layers
 - let server side have respective transports with same layers
 - let http fetch layers have http server layer
-- let fetch patch middleware override res.end function and pass response through fetch transport layers before sending response back (is it okay through?)
+- let fetch patch middleware override res.end function and pass response through fetch transport layers before sending response back (is it okay through?) (must be aware that headers can be already sent at this moment, but its okay, while it is only for body compression) (maybe fetched body better be decompressed by browser with special header? It is more appropriate, but manual decompressing seems aligning with other layers (socket, etc))

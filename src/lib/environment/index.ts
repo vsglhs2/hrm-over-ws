@@ -1,3 +1,3 @@
-export { ClientEnvironment } from "./client";
-export { ServerEnvironment } from "./server";
+export { PartialClientEnvironment, ServiceWorkerEnvironment, ClientEnvironment } from "./client";
+export { ServerEnvironment, SocketEnvironment } from "./server";
 export { Environment } from "./base";

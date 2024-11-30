@@ -2,6 +2,8 @@
 
 declare const __PLUGIN_VERSION__: string;
 declare const __PLUGIN_NAME__: string;
+declare const __SERVICE_WORKER_INSTALLED_HEADER__: string;
+declare const __SERVICE_WORKER_SCRIPT_PATH__: string;
 
 interface ImportMetaEnv {
 }

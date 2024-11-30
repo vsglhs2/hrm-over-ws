@@ -1,7 +1,7 @@
 import { ViteDevServer } from "vite";
-import { Environment, EnvironmentOptions } from "./base";
+import { Environment, EnvironmentOptions } from "../base";
 
-type ServerEnvironmentOptions = EnvironmentOptions & {
+export type ServerEnvironmentOptions = EnvironmentOptions & {
     server: ViteDevServer;
 };
 

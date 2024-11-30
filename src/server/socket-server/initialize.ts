@@ -1,20 +1,25 @@
-export function initializeSocketServer() {
-    const io = createSocketServer(server, resolvedOptions.options);
+import { ServerEnvironment, SocketEnvironment } from "@/lib/environment";
+import { createSocketServer } from "./create-socket-server";
+import { moduleHandler } from "./handlers";
 
-    const socketsAmount =
-        resolvedOptions.variant === TransportVariant.SOCKET_POOL
-            ? (resolvedOptions.options as PoolTransportOptions).poolAmount
-            : 1;
+export function initializeSocketServer(this: ServerEnvironment) {
+    const io = createSocketServer.call(this);
 
-    const socketPath = resolvedOptions.options.path;
-    const host = server.config.server.host ?? 'localhost';
-    const port = server.config.server.port ?? 5173;
-    const origin = `http://${host}:${port}`;
+	io.on('connection', socket => {
+		const socketAppendix = `${socket.id}`;
 
-    for (let i = 1; i <= socketsAmount; i++) {
-        initializeSocket(server, io, {
-            origin: origin,
-            path: socketPath,
-        });
-    }
+		console.log(`connected to ${socketAppendix}`);
+
+		socket.on('disconnect', () => {
+			console.log(`disconnected from ${socketAppendix}`);
+		});
+
+		const environment = new SocketEnvironment({
+			...this,
+			io: io,
+			socketAppendix: socketAppendix,
+		})
+
+		socket.on(this.eventName('module'), moduleHandler.bind(environment));
+	});
 }

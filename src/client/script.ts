@@ -8,7 +8,6 @@ import { createStore } from "./service-worker/store";
 if (!import.meta.hot)
   throw Error('This service script must work only along with vite hmr');
 
-const eventPrefix = 'hmr';
 const store = createStore();
 
 const { hot } = import.meta;

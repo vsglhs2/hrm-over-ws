@@ -1,16 +1,19 @@
-export function createServiceWorkerScriptMiddleware() {
-	return (
-		req: Connect.IncomingMessage,
-		res: ServerResponse,
-		next: Connect.NextFunction
-	) => {
-		const url = req.originalUrl;
+import { ServerEnvironment } from "@/lib/environment";
+import { Connect } from "vite";
+import { ServerResponse } from 'node:http';
 
-		if (url && url.includes(SERVICE_WORKER_PATH)) {
-			res.setHeader("Service-Worker-Allowed", "/");
-			res.setHeader("Content-Type", "text/javascript");
-		}
+export function serviceWorkerScriptMiddleware(
+	this: ServerEnvironment,
+	req: Connect.IncomingMessage,
+	res: ServerResponse,
+	next: Connect.NextFunction
+) {
+	const url = req.originalUrl;
 
-		next();
-	};
-}
+	if (url && url.includes(this.options.constants.serviceWorker.scriptPath)) {
+		res.setHeader("Service-Worker-Allowed", "/");
+		res.setHeader("Content-Type", "text/javascript");
+	}
+
+	next();
+};

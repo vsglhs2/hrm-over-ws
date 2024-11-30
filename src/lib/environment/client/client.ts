@@ -1,4 +1,4 @@
-import { Environment, EnvironmentOptions } from "./base";
+import { Environment, EnvironmentOptions } from "../base";
 
 type ClientEnvironmentOptions = EnvironmentOptions & {
 

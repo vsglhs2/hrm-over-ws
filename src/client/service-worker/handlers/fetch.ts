@@ -29,27 +29,4 @@ export const fetchHandler = (event: FetchEvent) => {
             credentials: 'same-origin',
         });
     }
-
-    event.respondWith(
-        caches.match(request)
-            .then(response => {
-                // If the request is found in the cache, return the cached version
-                if (response) {
-                    // console.log('already cached', response.url)
-                    return response;
-                }
-
-                // Otherwise, fetch from the network
-                return fetch(request).then(response => {
-                    // Optionally cache the fetched resource
-                    return caches.open(CACHE_NAME).then(cache => {
-                        if (request.url.startsWith('http')) {
-                            cache.put(request, response.clone());
-                            // console.log('cached', response.url);
-                        }
-                        return response;
-                    });
-                });
-            })
-    );
 }

@@ -22,5 +22,3 @@ export const handler = <
     type: type,
     listener: listener as unknown as (e: Event) => void,
 });
-
-handler('dispose')

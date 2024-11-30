@@ -1,4 +1,5 @@
 import { TransportVariant, TransportConfig } from "@/lib/transport/types";
+import { UserConfig } from "vite";
 
 export type PluginFeatures = {
 	prefetch: boolean;
@@ -34,7 +35,12 @@ export type PluginOptions<
 export const pluginName = __PLUGIN_NAME__;
 export const pluginVersion = __PLUGIN_VERSION__;
 
-export const defaultOptions: PluginOptions = {
+const defaultHost = 'localhost';
+const defaultPort = 5173;
+const defaultProtocol = 'http';
+const defaultOrigin = `${defaultProtocol}://${defaultHost}:${defaultPort}`;
+
+export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 	features: {
 		cache: false,
 		compress: false,
@@ -58,9 +64,8 @@ export const defaultOptions: PluginOptions = {
 	transport: {
 		variant: TransportVariant.SOCKET_POOL,
 		options: {
-			path: '/ws/module',
-			// THINK: does it needed at all here?
-			origin: 'http://localhost:5173',
+			path: `${config.base}ws/module`,
+			origin: config.server?.origin ?? defaultOrigin,
 			poolAmount: 1,
 		},
 	},
@@ -68,4 +73,4 @@ export const defaultOptions: PluginOptions = {
 		isModule: true,
 		isExternalServiceWorker: false,
 	},
-};
+});

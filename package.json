@@ -1,5 +1,6 @@
 {
-  "name": "vite-hrm-over-ws",
+  "name": "vite-plugin-hrm-over-ws",
+  "keywords": ["vite-plugin"],
   "private": true,
   "version": "0.0.1",
   "type": "module",

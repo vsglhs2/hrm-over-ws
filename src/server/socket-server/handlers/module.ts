@@ -1,5 +1,16 @@
-export const moduleHandler = async (buffer, ack) => {
-    const data = requestSerializer.deserialize(buffer);
+import { SocketEnvironment } from "@/lib/environment";
+import { getHeadersRecord } from "@/lib/utils";
+import { retrieveTransformFunctionFromServer } from "@/server/utils";
+import httpMocks, { RequestMethod } from "node-mocks-http";
+import { Connect } from "vite";
+import { ServerResponse } from 'node:http';
+
+export async function moduleHandler(
+    this: SocketEnvironment,
+    buffer: Buffer,
+    ack: (buffer: ArrayBuffer) => void
+) {
+    const data = this.serializers.request.deserialize(buffer);
 
     const req: Connect.IncomingMessage = httpMocks.createRequest({
         url: new URL(data.url).pathname,
@@ -9,7 +20,7 @@ export const moduleHandler = async (buffer, ack) => {
 
     try {
         // In function root middlewares array is empty
-        const transformHandler = retrieveTransformFunctionFromServer(server);
+        const transformHandler = retrieveTransformFunctionFromServer(this.server);
 
         // console.log(`Requested module from ${socketAppendix}:`, data);
 
@@ -27,11 +38,11 @@ export const moduleHandler = async (buffer, ack) => {
         // @ts-expect-error TODO: somehow req is empty here, so serialize throws
         res.req = req;
 
-        const serialized = await responseSerializer.serialize(res);
+        const serialized = await this.serializers.response.serialize(res);
         ack(serialized.buffer);
     } catch (err) {
         const error = err instanceof Error ? err : new Error('Unknown error: ' + String(err));
-        console.error(`Error during fetching module from ${socketAppendix}:`, error.message);
+        console.error(`Error during fetching module from ${this.socketAppendix}:`, error.message);
 
         const res: ServerResponse = httpMocks.createResponse({
             req: req,
@@ -39,7 +50,7 @@ export const moduleHandler = async (buffer, ack) => {
         res.statusCode = 404;
         res.end(error.message);
 
-        const serialized = await responseSerializer.serialize(res);
+        const serialized = await this.serializers.response.serialize(res);
         ack(serialized.buffer);
     }
 }

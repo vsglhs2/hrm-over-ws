@@ -1,10 +1,8 @@
 import { ServiceWorkerMessageType } from "./service-worker/handlers/message/utils";
 
-if (import.meta.hot && navigator.serviceWorker) {
-    const INSTALL_PAGE_INSTALLED_HEADER = 'service-worker-powered';
-
+if (import.meta.hot) {
     const baseUrl = import.meta.env.BASE_URL;
-    const scriptUrl = baseUrl + 'src/service-worker/sw.ts';
+    const scriptUrl = baseUrl + __SERVICE_WORKER_SCRIPT_PATH__;
 
     navigator.serviceWorker.register(scriptUrl, {
         scope: baseUrl,
@@ -27,7 +25,7 @@ if (import.meta.hot && navigator.serviceWorker) {
             type: ServiceWorkerMessageType.NEGOTIATE,
         });
 
-        document.cookie = `${INSTALL_PAGE_INSTALLED_HEADER}=${true};`;
+        document.cookie = `${__SERVICE_WORKER_INSTALLED_HEADER__}=${true};`;
         window.location.href = '/';
     });
 }

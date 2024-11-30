@@ -1,9 +1,12 @@
-export function createSocketServer(server: ViteDevServer, options: TransportOptions) {
-	const io = new Server(server.httpServer!, {
+import { ServerEnvironment } from "@/lib/environment";
+import { Server } from "socket.io";
+
+export function createSocketServer(this: ServerEnvironment) {
+	const io = new Server(this.server.httpServer!, {
 		cors: {
 			origin: '*',
 		},
-		path: options.path,
+		path: this.options.transport.options.path,
 	});
 
 	return io;

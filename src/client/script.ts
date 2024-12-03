@@ -2,7 +2,6 @@
 
 import { activateHandler, fetchHandler, handler, installHandler, messageHandler } from './handlers';
 import { initializeServiceWorker } from './service-worker';
-
 import { createStore } from './service-worker/store';
 
 if (!import.meta.hot)
@@ -25,5 +24,5 @@ initializeServiceWorker(sw, [
 	handler('message', messageHandler),
 	handler('fetch', fetchHandler),
 	handler('install', installHandler),
-	handler('activate', activateHandler),
+	handler('activate', activateHandler)
 ]);

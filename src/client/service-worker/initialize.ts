@@ -8,7 +8,7 @@ export function applyServiceWorkerHandlers(
 		sw.addEventListener(
 			handler.type,
 			handler.listener,
-			handler.options,
+			handler.options
 		);
 	}
 }

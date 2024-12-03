@@ -1,6 +1,7 @@
-import { ServerEnvironment } from '@/lib/environment';
 import { Connect } from 'vite';
 import { ServerResponse } from 'node:http';
+
+import { ServerEnvironment } from '@/lib/environment';
 
 export function installMiddleware(this: ServerEnvironment,
 	req: Connect.IncomingMessage,
@@ -24,7 +25,7 @@ export function installMiddleware(this: ServerEnvironment,
 	}
 
 	res.writeHead(302, {
-		'location': installPagePath,
+		'location': installPagePath
 	});
 	res.end();
 

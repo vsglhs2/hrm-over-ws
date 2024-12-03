@@ -6,7 +6,7 @@ export function applyHMRHandlers(
 		sw.addEventListener(
 			handler.type,
 			handler.listener,
-			handler.options,
+			handler.options
 		);
 	}
 }

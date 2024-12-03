@@ -8,6 +8,6 @@ type Store = {
 export function createStore(): Store {
 	return {
 		handler: new BufferedHandler(),
-		info: null,
+		info: null
 	};
 }

@@ -2,9 +2,7 @@ import { ServerResponse } from 'node:http';
 import httpMocks from 'node-mocks-http';
 
 import { concatUInt8Arrays } from '@/lib/utils';
-
 import { ResponseJson, NUMBER_BYTES_LENGTH } from './utils';
-
 import { JsonSerializer } from '../json';
 import { NumberSerializer } from '../number';
 import { Uint8ArraySerialized } from '../uint8array';
@@ -26,7 +24,7 @@ export class ServerResponseSerializer extends Uint8ArraySerialized<ServerRespons
 		const json: ResponseJson = {
 			url: response.req.url!,
 			statusCode: response.statusCode,
-			headers: headers,
+			headers: headers
 		};
 
 		const jsonArray = this.jsonSerializer.serialize(json);
@@ -53,7 +51,7 @@ export class ServerResponseSerializer extends Uint8ArraySerialized<ServerRespons
 		const bodyBuffer = bodyArray.buffer;
 
 		const res: ServerResponse = httpMocks.createResponse({
-			req: httpMocks.createRequest(json),
+			req: httpMocks.createRequest(json)
 		});
 		res.statusCode = json.statusCode;
 		res.setHeaders(new Headers(json.headers));

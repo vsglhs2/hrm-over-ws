@@ -1,5 +1,6 @@
-import { TransportVariant, TransportConfig } from '@/lib/transport/types';
 import { UserConfig } from 'vite';
+
+import { TransportVariant, TransportConfig } from '@/lib/transport/types';
 
 export type PluginFeatures = {
 	prefetch: boolean;
@@ -45,7 +46,7 @@ export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 		cache: false,
 		compress: false,
 		prefetch: false,
-		sourcemap: true,
+		sourcemap: true
 	},
 	constants: {
 		eventPrefix: 'hrm-over-ws',
@@ -57,20 +58,20 @@ export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 				'/@vite/client',
 				'/src/install.ts',
 				'/node_modules/vite/dist/client/env.mjs',
-				'/src/service-worker/sw.ts',
-			],
-		},
+				'/src/service-worker/sw.ts'
+			]
+		}
 	},
 	transport: {
 		variant: TransportVariant.SOCKET_POOL,
 		options: {
 			path: `${config.base}ws/module`,
 			origin: config.server?.origin ?? defaultOrigin,
-			poolAmount: 1,
-		},
+			poolAmount: 1
+		}
 	},
 	handler: {
 		isModule: true,
-		isExternalServiceWorker: false,
-	},
+		isExternalServiceWorker: false
+	}
 });

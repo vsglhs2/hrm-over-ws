@@ -1,5 +1,6 @@
-import { RequestSerializer, ServerResponseSerializer } from '@/lib/serializer';
 import { Server } from 'socket.io';
+
+import { RequestSerializer, ServerResponseSerializer } from '@/lib/serializer';
 import { ServerEnvironment } from '..';
 
 type SocketEnvironmentOptions = ServerEnvironment & {
@@ -27,7 +28,7 @@ export class SocketEnvironment extends ServerEnvironment {
 
 		this.serializers = {
 			request: new RequestSerializer(),
-			response: new ServerResponseSerializer(),
+			response: new ServerResponseSerializer()
 		};
 	}
 }

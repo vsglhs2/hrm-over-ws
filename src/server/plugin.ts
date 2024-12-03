@@ -1,7 +1,8 @@
+import { Plugin } from 'vite';
+
 import { ServerEnvironment } from '@/lib/environment';
 import { resolveOptions } from '@/lib/utils';
 import { getDefaultOptions, pluginName, PluginOptions } from '@/options';
-import { Plugin } from 'vite';
 import { initializeHMR } from './hmr';
 import { initializeServer } from './middlewares/initialize';
 import { initializeSocketServer } from './socket-server/initialize';
@@ -31,8 +32,8 @@ export default function hrmOverSocketPlugin(
 						resolvedOptions.constants.serviceWorker.scriptPath,
 					__PLUGIN_VERSION__: packageVersion,
 					__PLUGIN_NAME__: packageName,
-					__EVENT_PREFIX__: resolvedOptions.constants.eventPrefix,
-				},
+					__EVENT_PREFIX__: resolvedOptions.constants.eventPrefix
+				}
 			};
 		},
 
@@ -42,12 +43,12 @@ export default function hrmOverSocketPlugin(
 
 			const environment = new ServerEnvironment({
 				options: resolvedOptions,
-				server,
+				server
 			});
 
 			initializeServer.call(environment);
 			initializeSocketServer.call(environment);
 			initializeHMR.call(environment);
-		},
+		}
 	};
 }

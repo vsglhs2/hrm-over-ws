@@ -1,6 +1,5 @@
 
 import { Balancer } from './balancer';
-
 import { TransportOptions, Transport } from '../base';
 
 export type PoolTransportOptions = TransportOptions & {
@@ -19,7 +18,7 @@ export class PoolTransport extends Transport {
 
 		this.transports = [];
 		this.balancer = new Balancer({
-			max: options.poolAmount,
+			max: options.poolAmount
 		});
 
 		for (let i = 1; i <= options.poolAmount; i++) {

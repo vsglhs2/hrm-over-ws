@@ -8,7 +8,7 @@ import { PluginOptions } from '@/options';
 
 export function initializationHandler(this: ClientEnvironment, optionsBuffer: ArrayBuffer) {
 	const jsonSerializer = new JsonSerializer({
-		reviver: reviverFunction,
+		reviver: reviverFunction
 	});
 	const optionsArray = new Uint8Array(optionsBuffer);
 	const options = jsonSerializer.deserialize(optionsArray) as PluginOptions;

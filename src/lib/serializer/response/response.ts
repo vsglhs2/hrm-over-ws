@@ -1,8 +1,6 @@
 
 import { getHeadersRecord, concatUInt8Arrays } from '@/lib/utils';
-
 import { NUMBER_BYTES_LENGTH, ResponseJson } from './utils';
-
 import { JsonSerializer } from '../json';
 import { NumberSerializer } from '../number';
 import { Uint8ArraySerialized } from '../uint8array';
@@ -24,7 +22,7 @@ export class ResponseSerializer extends Uint8ArraySerialized<Response> {
 		const json: ResponseJson = {
 			url: response.url,
 			statusCode: response.status,
-			headers: headers,
+			headers: headers
 		};
 
 		const jsonArray = this.jsonSerializer.serialize(json);

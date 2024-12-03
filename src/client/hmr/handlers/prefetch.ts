@@ -6,7 +6,7 @@ export const prefetchHandler = (moduleUrls: string[]) => {
 	const promises = moduleUrls.map(moduleUrl => {
 		console.log('fetch: ', moduleUrl);
 		return store.handler.request(new Request(moduleUrl), {
-			reuse: true,
+			reuse: true
 		});
 	});
 

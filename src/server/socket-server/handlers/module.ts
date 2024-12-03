@@ -1,9 +1,10 @@
+import httpMocks, { RequestMethod } from 'node-mocks-http';
+import { ServerResponse } from 'node:http';
+import { Connect } from 'vite';
+
 import { SocketEnvironment } from '@/lib/environment';
 import { getHeadersRecord } from '@/lib/utils';
 import { retrieveTransformFunctionFromServer } from '@/server/utils';
-import httpMocks, { RequestMethod } from 'node-mocks-http';
-import { Connect } from 'vite';
-import { ServerResponse } from 'node:http';
 
 export async function moduleHandler(
 	this: SocketEnvironment,
@@ -15,7 +16,7 @@ export async function moduleHandler(
 	const req: Connect.IncomingMessage = httpMocks.createRequest({
 		url: new URL(data.url).pathname,
 		method: data.method as RequestMethod,
-		headers: getHeadersRecord(data.headers),
+		headers: getHeadersRecord(data.headers)
 	});
 
 	try {
@@ -25,7 +26,7 @@ export async function moduleHandler(
 		// console.log(`Requested module from ${socketAppendix}:`, data);
 
 		const res: ServerResponse = httpMocks.createResponse({
-			req: req,
+			req: req
 		});
 
 		await transformHandler(req, res, async (err) => {
@@ -45,7 +46,7 @@ export async function moduleHandler(
 		console.error(`Error during fetching module from ${this.socketAppendix}:`, error.message);
 
 		const res: ServerResponse = httpMocks.createResponse({
-			req: req,
+			req: req
 		});
 		res.statusCode = 404;
 		res.end(error.message);

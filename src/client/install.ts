@@ -6,7 +6,7 @@ if (import.meta.hot) {
 
 	navigator.serviceWorker.register(scriptUrl, {
 		scope: baseUrl,
-		type: 'module',
+		type: 'module'
 	})
 		.then(registration => {
 			console.log('Service Worker registered with scope:', registration.scope);
@@ -22,7 +22,7 @@ if (import.meta.hot) {
 		}
 
 		registration.active.postMessage({
-			type: ServiceWorkerMessageType.NEGOTIATE,
+			type: ServiceWorkerMessageType.NEGOTIATE
 		});
 
 		document.cookie = `${__SERVICE_WORKER_INSTALLED_HEADER__}=${true};`;

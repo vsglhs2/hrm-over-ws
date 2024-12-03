@@ -4,7 +4,7 @@ import { replacerFunction } from '@/lib/utils/json-transform-functions';
 
 export function negotiateHandler(this: ServerEnvironment) {
 	const jsonSerializer = new JsonSerializer({
-		replacer: replacerFunction,
+		replacer: replacerFunction
 	});
 	// @ts-expect-error Options contains function type in it
 	const serializedOptions = jsonSerializer.serialize(this.options);

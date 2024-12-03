@@ -17,8 +17,8 @@ export const handler = <
     = keyof ViteHotContext
 >(
 		type: Type,
-		listener: HMRHandler<Type>['listener'],
+		listener: HMRHandler<Type>['listener']
 	): HMRHandler => ({
 		type: type,
-		listener: listener as unknown as (e: Event) => void,
+		listener: listener as unknown as (e: Event) => void
 	});

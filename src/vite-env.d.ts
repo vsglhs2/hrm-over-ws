@@ -5,15 +5,15 @@ declare const __PLUGIN_NAME__: string;
 declare const __SERVICE_WORKER_INSTALLED_HEADER__: string;
 declare const __SERVICE_WORKER_SCRIPT_PATH__: string;
 
-interface ImportMetaEnv {}
+// interface ImportMetaEnv {}
 
 interface ImportMeta {
-	readonly env: ImportMetaEnv;
+	// readonly env: ImportMetaEnv;
 	readonly hot?: ViteHotContext;
 }
 
 interface ViteHotContext {
-	readonly data: any;
+	readonly data: unknown;
 
 	accept(): void;
 	accept(cb: (mod: ModuleNamespace | undefined) => void): void;
@@ -23,8 +23,8 @@ interface ViteHotContext {
 		cb: (mods: Array<ModuleNamespace | undefined>) => void
 	): void;
 
-	dispose(cb: (data: any) => void): void;
-	prune(cb: (data: any) => void): void;
+	dispose(cb: (data: unknown) => void): void;
+	prune(cb: (data: unknown) => void): void;
 	invalidate(message?: string): void;
 
 	on<T extends string>(

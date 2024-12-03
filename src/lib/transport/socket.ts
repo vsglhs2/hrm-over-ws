@@ -13,7 +13,7 @@ export class SocketTransport extends Transport {
 		const ioAppendix = `${options.path}`;
 		const socket = this.socket = io(options.origin, {
 			transports: ['websocket'],
-			path: ioAppendix,
+			path: ioAppendix
 		});
 
 		socket.on('connect', () => {

@@ -1,5 +1,4 @@
 import { Transport } from '@/lib/transport';
-
 import { RequestHandler } from './base';
 
 export class TransportModuleHandler extends RequestHandler {
@@ -29,7 +28,7 @@ export class TransportModuleHandler extends RequestHandler {
 				: new Error(`Unknown error: ${String(err)}`);
 
 			return new Response(error.message, {
-				status: 404,
+				status: 404
 			});
 		}
 	}

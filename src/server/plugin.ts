@@ -1,10 +1,10 @@
-import { Plugin } from "vite";
-import { resolveOptions } from "@/lib/utils";
-import { initializeSocketServer } from "./socket-server/initialize";
-import { getDefaultOptions, pluginName, PluginOptions } from "@/options";
-import { ServerEnvironment } from "@/lib/environment";
-import { initializeHMR } from "./hmr";
-import { initializeServer } from "./middlewares/initialize";
+import { ServerEnvironment } from '@/lib/environment';
+import { resolveOptions } from '@/lib/utils';
+import { getDefaultOptions, pluginName, PluginOptions } from '@/options';
+import { Plugin } from 'vite';
+import { initializeHMR } from './hmr';
+import { initializeServer } from './middlewares/initialize';
+import { initializeSocketServer } from './socket-server/initialize';
 
 const packageVersion = JSON.stringify(process.env.npm_package_version);
 const packageName = JSON.stringify(process.env.npm_package_name);
@@ -25,8 +25,10 @@ export default function hrmOverSocketPlugin(
 
 			return {
 				define: {
-					__SERVICE_WORKER_INSTALLED_HEADER__: resolvedOptions.constants.serviceWorker.installedHeader,
-					__SERVICE_WORKER_SCRIPT_PATH__: resolvedOptions.constants.serviceWorker.scriptPath,
+					__SERVICE_WORKER_INSTALLED_HEADER__:
+						resolvedOptions.constants.serviceWorker.installedHeader,
+					__SERVICE_WORKER_SCRIPT_PATH__:
+						resolvedOptions.constants.serviceWorker.scriptPath,
 					__PLUGIN_VERSION__: packageVersion,
 					__PLUGIN_NAME__: packageName,
 					__EVENT_PREFIX__: resolvedOptions.constants.eventPrefix,

@@ -1,1 +1,1 @@
-export { ServiceWorkerEnvironment } from "./service-worker";
+export { ServiceWorkerEnvironment } from './service-worker';

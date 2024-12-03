@@ -1,1 +1,1 @@
-export { initializeHMR } from "./initialize";
+export { initializeHMR } from './initialize';

@@ -1,2 +1,2 @@
-export { installMiddleware } from "./install";
-export { serviceWorkerScriptMiddleware } from "./service-worker-script";
+export { installMiddleware } from './install';
+export { serviceWorkerScriptMiddleware } from './service-worker-script';

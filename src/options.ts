@@ -1,5 +1,5 @@
-import { TransportVariant, TransportConfig } from "@/lib/transport/types";
-import { UserConfig } from "vite";
+import { TransportVariant, TransportConfig } from '@/lib/transport/types';
+import { UserConfig } from 'vite';
 
 export type PluginFeatures = {
 	prefetch: boolean;
@@ -13,7 +13,7 @@ export type PluginConstants = {
 	serviceWorker: {
 		scriptPath: string;
 		installedHeader: string;
-		installPagePath: string;	
+		installPagePath: string;
 		installPageSources: string[];
 	};
 };
@@ -27,8 +27,8 @@ export type PluginOptions<
 	Variant extends TransportVariant = TransportVariant
 > = {
 	features: PluginFeatures;
-	constants: PluginConstants;	
-	transport: TransportConfig<Variant>;	
+	constants: PluginConstants;
+	transport: TransportConfig<Variant>;
 	handler: PluginHandler;
 };
 
@@ -46,7 +46,7 @@ export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 		compress: false,
 		prefetch: false,
 		sourcemap: true,
-	},	
+	},
 	constants: {
 		eventPrefix: 'hrm-over-ws',
 		serviceWorker: {

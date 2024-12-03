@@ -1,6 +1,6 @@
-import { TransportOptions } from "./base";
-import { HttpFetchTransportOptions } from "./http";
-import { PoolTransportOptions } from "./pool/base";
+import { TransportOptions } from './base';
+import { HttpFetchTransportOptions } from './http';
+import { PoolTransportOptions } from './pool/base';
 
 export enum TransportVariant {
 	SOCKET_POOL,
@@ -16,5 +16,5 @@ export type VariantOptions<Variant extends TransportVariant> = {
 
 export type TransportConfig<Variant extends TransportVariant> = {
 	variant: Variant;
-	options: VariantOptions<Variant>;	
+	options: VariantOptions<Variant>;
 };

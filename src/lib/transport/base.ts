@@ -4,13 +4,13 @@ export type TransportOptions = {
 };
 
 export abstract class Transport {
-    protected origin: string;
-    protected path: string;
+	protected origin: string;
+	protected path: string;
 
-    constructor(options: TransportOptions) {
-        this.origin = options.origin;
-        this.path = options.path;
-    }
+	constructor(options: TransportOptions) {
+		this.origin = options.origin;
+		this.path = options.path;
+	}
 
     public abstract open(): void;
     public abstract close(): void;

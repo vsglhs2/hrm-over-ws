@@ -1,1 +1,1 @@
-export { retrieveTransformFunctionFromServer } from "./retrieve-transform-function";
+export { retrieveTransformFunctionFromServer } from './retrieve-transform-function';

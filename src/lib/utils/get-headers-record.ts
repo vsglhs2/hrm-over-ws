@@ -1,9 +1,9 @@
 export function getHeadersRecord(headers: Headers) {
-  const record: Record<string, string> = {};
+	const record: Record<string, string> = {};
 
-  for (const [header, value] of headers.entries()) {
-    record[header] = value;
-  }
+	for (const [header, value] of headers.entries()) {
+		record[header] = value;
+	}
 
-  return record;
+	return record;
 }

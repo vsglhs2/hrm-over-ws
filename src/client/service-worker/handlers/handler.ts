@@ -17,11 +17,11 @@ export const handler = <
     Type extends keyof ServiceWorkerGlobalScopeEventMap
     = keyof ServiceWorkerGlobalScopeEventMap
 >(
-    type: Type,
-    listener: ServiceWorkerHandler<Type>['listener'],
-    options?: ServiceWorkerHandler<Type>['options'],
-): ServiceWorkerHandler => ({
-    type: type,
-    listener: listener as unknown as (e: Event) => void,
-    options: options,
-});
+		type: Type,
+		listener: ServiceWorkerHandler<Type>['listener'],
+		options?: ServiceWorkerHandler<Type>['options'],
+	): ServiceWorkerHandler => ({
+		type: type,
+		listener: listener as unknown as (e: Event) => void,
+		options: options,
+	});

@@ -1,5 +1,5 @@
-import { ServerEnvironment } from "@/lib/environment";
-import { Connect } from "vite";
+import { ServerEnvironment } from '@/lib/environment';
+import { Connect } from 'vite';
 import { ServerResponse } from 'node:http';
 
 export function installMiddleware(this: ServerEnvironment,

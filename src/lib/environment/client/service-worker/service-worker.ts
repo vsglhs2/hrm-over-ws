@@ -1,4 +1,4 @@
-import { EnvironmentOptions, Environment } from "../../base";
+import { EnvironmentOptions, Environment } from '../../base';
 
 
 type ServiceWorkerEnvironmentOptions = EnvironmentOptions & {
@@ -7,7 +7,7 @@ type ServiceWorkerEnvironmentOptions = EnvironmentOptions & {
 
 export class ServiceWorkerEnvironment extends Environment {
 
-    constructor({ options }: ServiceWorkerEnvironmentOptions) {
-        super({ options });
-    }
+	constructor({ options }: ServiceWorkerEnvironmentOptions) {
+		super({ options });
+	}
 }

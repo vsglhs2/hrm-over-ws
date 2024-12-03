@@ -3,25 +3,25 @@ export type BalancerOptions = {
 };
 
 export class Balancer {
-    private max: number;
-    private _current: number;
+	private max: number;
+	private _current: number;
 
-    constructor(options: BalancerOptions) {
-        this.max = options.max;
-        this._current = 0;
-    }
+	constructor(options: BalancerOptions) {
+		this.max = options.max;
+		this._current = 0;
+	}
 
-    current() {
-        return this._current;
-    }
+	current() {
+		return this._current;
+	}
 
-    next() {
-        const current = this._current;
-        this._current++;
+	next() {
+		const current = this._current;
+		this._current++;
 
-        if (this._current === this.max)
-            this._current = 0;
+		if (this._current === this.max)
+			this._current = 0;
 
-        return current;
-    }
+		return current;
+	}
 }

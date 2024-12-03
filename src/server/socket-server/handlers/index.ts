@@ -1,1 +1,1 @@
-export { moduleHandler } from "./module";
+export { moduleHandler } from './module';

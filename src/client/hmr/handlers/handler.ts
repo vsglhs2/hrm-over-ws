@@ -16,9 +16,9 @@ export const handler = <
     Type extends keyof ViteHotContext
     = keyof ViteHotContext
 >(
-    type: Type,
-    listener: HMRHandler<Type>['listener'],
-): HMRHandler => ({
-    type: type,
-    listener: listener as unknown as (e: Event) => void,
-});
+		type: Type,
+		listener: HMRHandler<Type>['listener'],
+	): HMRHandler => ({
+		type: type,
+		listener: listener as unknown as (e: Event) => void,
+	});

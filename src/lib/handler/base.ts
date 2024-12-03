@@ -1,5 +1,5 @@
-import { RequestSerializer, ResponseSerializer } from "@/lib/serializer";
-import { RecursivePartial, resolveOptions } from "../utils";
+import { RequestSerializer, ResponseSerializer } from '@/lib/serializer';
+import { RecursivePartial, resolveOptions } from '../utils';
 
 export type RequestState = {
     request: Request;
@@ -14,57 +14,57 @@ export type RequestOptions = {
 };
 
 const defaultOptions: RequestOptions = {
-    reuse: false,
+	reuse: false,
 };
 
 export abstract class RequestHandler {
-    protected stateMap: WeakMap<Request, RequestState>;
-    protected requestMap: Map<string, Request[]>;
+	protected stateMap: WeakMap<Request, RequestState>;
+	protected requestMap: Map<string, Request[]>;
 
-    protected requestSerializer: RequestSerializer;
-    protected responseSerializer: ResponseSerializer;
+	protected requestSerializer: RequestSerializer;
+	protected responseSerializer: ResponseSerializer;
 
-    constructor() {
-        this.stateMap = new Map();
-        this.requestMap = new Map();
+	constructor() {
+		this.stateMap = new Map();
+		this.requestMap = new Map();
 
-        this.requestSerializer = new RequestSerializer();
-        this.responseSerializer = new ResponseSerializer();
-    }
+		this.requestSerializer = new RequestSerializer();
+		this.responseSerializer = new ResponseSerializer();
+	}
 
     protected abstract process(request: Request): Promise<Response>;
 
     public async request(request: Request, options?: RecursivePartial<RequestOptions>): Promise<Response> {
-        const resolvedOptions = resolveOptions(options, defaultOptions);
-        const state = this.acquireState(request, resolvedOptions);
+    	const resolvedOptions = resolveOptions(options, defaultOptions);
+    	const state = this.acquireState(request, resolvedOptions);
 
-        const promise = state.promise ?? this.process(request).then(response => {
-            state.response = response;
-            return response;
-        });
-        state.promise = promise;
+    	const promise = state.promise ?? this.process(request).then(response => {
+    		state.response = response;
+    		return response;
+    	});
+    	state.promise = promise;
 
-        return promise.then(response => response.clone());
+    	return promise.then(response => response.clone());
     }
 
     protected getState(request: Request): RequestState | undefined {
-        return this.stateMap.get(request);
+    	return this.stateMap.get(request);
     }
 
     protected acquireState(request: Request, options: RequestOptions): RequestState {
-        const key = request.url + request.method;
+    	const key = request.url + request.method;
 
-        let sameKeyRequests = this.requestMap.get(key);
-        if (sameKeyRequests?.length && options.reuse) {
-            return this.getState(sameKeyRequests[0])!;
-        }
+    	let sameKeyRequests = this.requestMap.get(key);
+    	if (sameKeyRequests?.length && options.reuse) {
+    		return this.getState(sameKeyRequests[0])!;
+    	}
 
-        if (!sameKeyRequests) sameKeyRequests = this.requestMap.set(key, []).get(key);
+    	if (!sameKeyRequests) sameKeyRequests = this.requestMap.set(key, []).get(key);
         sameKeyRequests!.push(request);
 
         const state: RequestState = {
-            request: request,
-            options: options,
+        	request: request,
+        	options: options,
         };
         this.stateMap.set(request, state);
 

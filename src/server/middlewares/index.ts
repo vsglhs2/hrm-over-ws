@@ -1,1 +1,1 @@
-export { initializeServer } from "./initialize";
+export { initializeServer } from './initialize';

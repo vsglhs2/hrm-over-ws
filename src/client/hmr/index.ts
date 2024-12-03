@@ -1,1 +1,1 @@
-export { initializationHandler, prefetchHandler } from "./handlers";
+export { initializationHandler, prefetchHandler } from './handlers';

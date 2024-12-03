@@ -1,12 +1,12 @@
 /// <reference lib="webworker" />
 
-import { activateHandler, fetchHandler, handler, installHandler, messageHandler } from "./handlers";
-import { initializeServiceWorker } from "./service-worker";
+import { activateHandler, fetchHandler, handler, installHandler, messageHandler } from './handlers';
+import { initializeServiceWorker } from './service-worker';
 
-import { createStore } from "./service-worker/store";
+import { createStore } from './service-worker/store';
 
 if (!import.meta.hot)
-  throw Error('This service script must work only along with vite hmr');
+	throw Error('This service script must work only along with vite hmr');
 
 const store = createStore();
 
@@ -22,8 +22,8 @@ hot.on(`${eventPrefix}:modules`, prefetchHandler);
 const sw = self as unknown as ServiceWorkerGlobalScope;
 
 initializeServiceWorker(sw, [
-  handler('message', messageHandler),
-  handler('fetch', fetchHandler),
-  handler('install', installHandler),
-  handler('activate', activateHandler),
+	handler('message', messageHandler),
+	handler('fetch', fetchHandler),
+	handler('install', installHandler),
+	handler('activate', activateHandler),
 ]);

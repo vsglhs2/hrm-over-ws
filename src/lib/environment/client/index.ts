@@ -1,3 +1,3 @@
-export { ClientEnvironment } from "./client";
-export { PartialClientEnvironment } from "./partial";
-export { ServiceWorkerEnvironment } from "./service-worker";
+export { ClientEnvironment } from './client';
+export { PartialClientEnvironment } from './partial';
+export { ServiceWorkerEnvironment } from './service-worker';

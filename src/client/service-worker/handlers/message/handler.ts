@@ -1,10 +1,10 @@
-import { ServiceWorkerMessage, ServiceWorkerMessageType } from "./utils";
+import { ServiceWorkerMessage, ServiceWorkerMessageType } from './utils';
 
 export const messageHandler = (event: ExtendableMessageEvent) => {
-    const data = event.data as ServiceWorkerMessage;
+	const data = event.data as ServiceWorkerMessage;
 
-    if (data.type !== ServiceWorkerMessageType.NEGOTIATE) return;
+	if (data.type !== ServiceWorkerMessageType.NEGOTIATE) return;
 
-    hot.send(`${eventPrefix}:negotiate`);
-    console.log('Send negotiation request');
-}
+	hot.send(`${eventPrefix}:negotiate`);
+	console.log('Send negotiation request');
+};

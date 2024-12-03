@@ -1,4 +1,4 @@
-import { BufferedHandler, RequestHandler } from "@/lib/handler";
+import { BufferedHandler, RequestHandler } from '@/lib/handler';
 
 type Store = {
   handler: RequestHandler;
@@ -6,8 +6,8 @@ type Store = {
 };
 
 export function createStore(): Store {
-  return {
-    handler: new BufferedHandler(),
-    info: null,
-  };
+	return {
+		handler: new BufferedHandler(),
+		info: null,
+	};
 }

@@ -22,7 +22,7 @@ export class ResponseSerializer extends Uint8ArraySerialized<Response> {
 		const json: ResponseJson = {
 			url: response.url,
 			statusCode: response.status,
-			headers: headers
+			headers: headers,
 		};
 
 		const jsonArray = this.jsonSerializer.serialize(json);
@@ -44,7 +44,7 @@ export class ResponseSerializer extends Uint8ArraySerialized<Response> {
 
 		const jsonArray = response.slice(
 			NUMBER_BYTES_LENGTH,
-			jsonLength + NUMBER_BYTES_LENGTH
+			jsonLength + NUMBER_BYTES_LENGTH,
 		);
 		const json: ResponseJson = this.jsonSerializer.deserialize(jsonArray);
 

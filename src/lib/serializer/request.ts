@@ -6,7 +6,7 @@ import { Uint8ArraySerialized } from './uint8array';
 const TARGET_HEADERS = [
 	'if-none-match',
 	'sec-fetch-dest',
-	'accept'
+	'accept',
 ];
 
 export type RequestJson = {
@@ -37,7 +37,7 @@ export class RequestSerializer extends Uint8ArraySerialized<Request> {
 		const json: RequestJson = {
 			url: url,
 			method: request.method,
-			headers: headers
+			headers: headers,
 		};
 
 		return this.jsonSerializer.serialize(json);
@@ -48,7 +48,7 @@ export class RequestSerializer extends Uint8ArraySerialized<Request> {
 
 		return new Request(json.url, {
 			method: json.method,
-			headers: json.headers
+			headers: json.headers,
 		});
 	}
 }

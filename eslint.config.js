@@ -11,14 +11,14 @@ export default [
 		languageOptions: { globals: globals.browser },
 		plugins: {
 			'@stylistic/js': stylisticJsPlugin,
-			'import': importPlugin
+			'import': importPlugin,
 		},
 		files: ['**/*.{js,mjs,cjs,ts}'],
 		ignores: ['node_modules/*'],
 		rules: {
 			'@stylistic/js/eol-last': ['error', 'always'],
 			'@stylistic/js/no-trailing-spaces': ['error'],
-			'@stylistic/js/comma-dangle': ['error'],
+			'@stylistic/js/comma-dangle': ['error', 'always-multiline'],
 
 			'eqeqeq': ['error', 'allow-null'],
 			'quotes': ['error', 'single'],
@@ -29,11 +29,11 @@ export default [
 				'error',
 				{
 					groups: [
-						['builtin', 'external']
+						['builtin', 'external'],
 					],
-					'newlines-between': 'always'
-				}
-			]
-		}
-	}
+					'newlines-between': 'always',
+				},
+			],
+		},
+	},
 ];

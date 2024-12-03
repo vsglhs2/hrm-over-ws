@@ -18,7 +18,7 @@ export class TransportModuleHandler extends RequestHandler {
 			const serialized = this.requestSerializer.serialize(request);
 			const response = await this.transport.sendAndWait(
 				'module',
-				serialized
+				serialized,
 			) as ArrayBuffer;
 
 			return this.responseSerializer.deserialize(new Uint8Array(response));
@@ -28,7 +28,7 @@ export class TransportModuleHandler extends RequestHandler {
 				: new Error(`Unknown error: ${String(err)}`);
 
 			return new Response(error.message, {
-				status: 404
+				status: 404,
 			});
 		}
 	}

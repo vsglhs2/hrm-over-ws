@@ -11,7 +11,7 @@ if (import.meta.hot && navigator.serviceWorker) {
 
 	navigator.serviceWorker.register(scriptUrl, {
 		scope: baseUrl,
-		type: 'module'
+		type: 'module',
 	})
 		.then(registration => {
 			console.log('Service Worker registered with scope:', registration.scope);
@@ -27,7 +27,7 @@ if (import.meta.hot && navigator.serviceWorker) {
 		}
 
 		registration.active.postMessage({
-			type: ServiceWorkerMessageType.NEGOTIATE
+			type: ServiceWorkerMessageType.NEGOTIATE,
 		});
 	});
 }

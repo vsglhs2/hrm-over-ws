@@ -4,12 +4,12 @@ import { TransportVariant, VariantOptions } from '@/lib/transport/types';
 
 export function createTransport<const Variant extends TransportVariant>(
 	variant: Variant,
-	options: VariantOptions<Variant>
+	options: VariantOptions<Variant>,
 ): Transport {
 	if (variant === TransportVariant.SOCKET_POOL)
 		return new PoolTransport(
 			options as PoolTransportOptions,
-			() => new SocketTransport(options)
+			() => new SocketTransport(options),
 		);
 
 	return new SocketTransport(options);

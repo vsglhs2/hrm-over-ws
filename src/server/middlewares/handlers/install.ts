@@ -6,18 +6,18 @@ import { ServerEnvironment } from '@/lib/environment';
 export function installMiddleware(this: ServerEnvironment,
 	req: Connect.IncomingMessage,
 	res: ServerResponse,
-	next: Connect.NextFunction
+	next: Connect.NextFunction,
 ) {
 	const {
 		installedHeader,
 		installPageSources,
-		installPagePath
+		installPagePath,
 	} = this.options.constants.serviceWorker;
 
 	if (
 		req.headers.cookie?.includes(installedHeader) ||
 		req.url !== '/' && installPageSources.some(
-			url => req.url && (url.includes(req.url) || req.url.includes(url))
+			url => req.url && (url.includes(req.url) || req.url.includes(url)),
 		) ||
 		req.headers['sec-fetch-dest'] === 'serviceworker'
 	) {
@@ -25,7 +25,7 @@ export function installMiddleware(this: ServerEnvironment,
 	}
 
 	res.writeHead(302, {
-		'location': installPagePath
+		'location': installPagePath,
 	});
 	res.end();
 

@@ -17,7 +17,7 @@ export function initializeSocketServer(this: ServerEnvironment) {
 		const environment = new SocketEnvironment({
 			...this,
 			io: io,
-			socketAppendix: socketAppendix
+			socketAppendix: socketAppendix,
 		});
 
 		socket.on(this.eventName('module'), moduleHandler.bind(environment));

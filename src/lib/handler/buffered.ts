@@ -19,8 +19,8 @@ export class BufferedHandler extends RequestHandler {
 				const event = new CustomEvent('process', {
 					detail: {
 						request: request,
-						response: response
-					}
+						response: response,
+					},
 				});
 
 				this.eventTarget.dispatchEvent(event);
@@ -47,7 +47,7 @@ export class BufferedHandler extends RequestHandler {
 
 			controller.signal.onabort = () => {
 				const response = new Response(controller.signal.reason, {
-					status: 404
+					status: 404,
 				});
 
 				resolve(response);

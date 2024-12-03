@@ -9,14 +9,14 @@ import { retrieveTransformFunctionFromServer } from '@/server/utils';
 export async function moduleHandler(
 	this: SocketEnvironment,
 	buffer: Buffer,
-	ack: (buffer: ArrayBuffer) => void
+	ack: (buffer: ArrayBuffer) => void,
 ) {
 	const data = this.serializers.request.deserialize(buffer);
 
 	const req: Connect.IncomingMessage = httpMocks.createRequest({
 		url: new URL(data.url).pathname,
 		method: data.method as RequestMethod,
-		headers: getHeadersRecord(data.headers)
+		headers: getHeadersRecord(data.headers),
 	});
 
 	try {
@@ -26,7 +26,7 @@ export async function moduleHandler(
 		// console.log(`Requested module from ${socketAppendix}:`, data);
 
 		const res: ServerResponse = httpMocks.createResponse({
-			req: req
+			req: req,
 		});
 
 		await transformHandler(req, res, async (err) => {
@@ -46,7 +46,7 @@ export async function moduleHandler(
 		console.error(`Error during fetching module from ${this.socketAppendix}:`, error.message);
 
 		const res: ServerResponse = httpMocks.createResponse({
-			req: req
+			req: req,
 		});
 		res.statusCode = 404;
 		res.end(error.message);

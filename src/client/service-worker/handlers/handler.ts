@@ -19,9 +19,9 @@ export const handler = <
 >(
 		type: Type,
 		listener: ServiceWorkerHandler<Type>['listener'],
-		options?: ServiceWorkerHandler<Type>['options']
+		options?: ServiceWorkerHandler<Type>['options'],
 	): ServiceWorkerHandler => ({
 		type: type,
 		listener: listener as unknown as (e: Event) => void,
-		options: options
+		options: options,
 	});

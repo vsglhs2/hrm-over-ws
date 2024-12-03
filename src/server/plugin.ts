@@ -11,7 +11,7 @@ const packageVersion = JSON.stringify(process.env.npm_package_version);
 const packageName = JSON.stringify(process.env.npm_package_name);
 
 export default function hrmOverSocketPlugin(
-	options?: Partial<PluginOptions>
+	options?: Partial<PluginOptions>,
 ): Plugin {
 	let resolvedOptions: PluginOptions;
 
@@ -32,8 +32,8 @@ export default function hrmOverSocketPlugin(
 						resolvedOptions.constants.serviceWorker.scriptPath,
 					__PLUGIN_VERSION__: packageVersion,
 					__PLUGIN_NAME__: packageName,
-					__EVENT_PREFIX__: resolvedOptions.constants.eventPrefix
-				}
+					__EVENT_PREFIX__: resolvedOptions.constants.eventPrefix,
+				},
 			};
 		},
 
@@ -43,12 +43,12 @@ export default function hrmOverSocketPlugin(
 
 			const environment = new ServerEnvironment({
 				options: resolvedOptions,
-				server
+				server,
 			});
 
 			initializeServer.call(environment);
 			initializeSocketServer.call(environment);
 			initializeHMR.call(environment);
-		}
+		},
 	};
 }

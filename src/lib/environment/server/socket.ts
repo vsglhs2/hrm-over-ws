@@ -19,7 +19,7 @@ export class SocketEnvironment extends ServerEnvironment {
 	constructor({
 		options,
 		socketAppendix,
-		io, server
+		io, server,
 	}: SocketEnvironmentOptions) {
 		super({ options, server });
 
@@ -28,7 +28,7 @@ export class SocketEnvironment extends ServerEnvironment {
 
 		this.serializers = {
 			request: new RequestSerializer(),
-			response: new ServerResponseSerializer()
+			response: new ServerResponseSerializer(),
 		};
 	}
 }

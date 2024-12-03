@@ -12,13 +12,13 @@ export class PoolTransport extends Transport {
 
 	constructor(
 		options: PoolTransportOptions,
-		factory: (index: number) => Transport
+		factory: (index: number) => Transport,
 	) {
 		super(options);
 
 		this.transports = [];
 		this.balancer = new Balancer({
-			max: options.poolAmount
+			max: options.poolAmount,
 		});
 
 		for (let i = 1; i <= options.poolAmount; i++) {

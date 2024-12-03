@@ -4,7 +4,7 @@ import { RecursivePartial } from './types';
 
 export function resolveOptions<Options extends Record<string, unknown>>(
 	passedOptions: RecursivePartial<Options> | undefined,
-	defaultOptions: Options
+	defaultOptions: Options,
 ): Options {
 	return merge(passedOptions, defaultOptions);
 }

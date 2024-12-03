@@ -3,7 +3,7 @@ const urlsToFetch = [
 	/node_modules\/*/,
 	/@react-refresh/,
 	/client/,
-	/index.scss/
+	/index.scss/,
 ];
 
 export const fetchHandler = (event: FetchEvent) => {
@@ -19,14 +19,14 @@ export const fetchHandler = (event: FetchEvent) => {
 
 	if (needToFetch) {
 		return event.respondWith(promise.then(() => store.handler.request(request, {
-			reuse: false
+			reuse: false,
 		})));
 	}
 
 	if (!needToFetch) {
 		// console.log('skip caching non-GET request', response.url)
 		return fetch(request, {
-			credentials: 'same-origin'
+			credentials: 'same-origin',
 		});
 	}
 };

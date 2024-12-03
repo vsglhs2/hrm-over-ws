@@ -8,6 +8,6 @@ export const installHandler = (event: ExtendableEvent) => {
 			.then(cache => {
 				// console.log('Opened cache');
 				// return cache.addAll(urlsToCache);
-			})
+			}),
 	);
 };

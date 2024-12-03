@@ -4,5 +4,5 @@ export {
 	fetchHandler,
 	installHandler,
 	messageHandler,
-	handler
+	handler,
 } from './handlers';

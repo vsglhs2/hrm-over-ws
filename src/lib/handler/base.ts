@@ -14,7 +14,7 @@ export type RequestOptions = {
 };
 
 const defaultOptions: RequestOptions = {
-	reuse: false
+	reuse: false,
 };
 
 export abstract class RequestHandler {
@@ -64,7 +64,7 @@ export abstract class RequestHandler {
 
         const state: RequestState = {
         	request: request,
-        	options: options
+        	options: options,
         };
         this.stateMap.set(request, state);
 

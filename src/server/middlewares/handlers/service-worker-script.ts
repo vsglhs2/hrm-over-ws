@@ -7,7 +7,7 @@ export function serviceWorkerScriptMiddleware(
 	this: ServerEnvironment,
 	req: Connect.IncomingMessage,
 	res: ServerResponse,
-	next: Connect.NextFunction
+	next: Connect.NextFunction,
 ) {
 	const url = req.originalUrl;
 

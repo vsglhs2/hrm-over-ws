@@ -24,5 +24,5 @@ initializeServiceWorker(sw, [
 	handler('message', messageHandler),
 	handler('fetch', fetchHandler),
 	handler('install', installHandler),
-	handler('activate', activateHandler)
+	handler('activate', activateHandler),
 ]);

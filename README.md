@@ -8,6 +8,8 @@ This plugin is a proof of concept and primary just side project of me to trying 
 
 # TODO
 
+-   figure out why direct default import doesnt work when trying to test plugin
+-   fix vite-env.d.ts file (it is not being referenced by ts somehow)
 -   add linter
 -   sometimes server doesn't get negotiation message
 -   need gracefully update service worker

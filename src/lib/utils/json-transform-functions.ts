@@ -1,5 +1,5 @@
-export type ReplacerFunction = (this: any, key: string, value: any) => any;
-export type ReviverFunction = (this: any, key: string, value: any) => any;
+export type ReplacerFunction = (this: unknown, key: string, value: unknown) => unknown;
+export type ReviverFunction = (this: unknown, key: string, value: unknown) => unknown;
 
 const FUNCTION_SIGN = 'FUNCTION';
 const REPLACED_SIGN = '#';

@@ -1,13 +1,15 @@
+import { ServiceWorkerEnvironment } from '@/lib/environment';
+
 const CACHE_NAME = 'site-cache-v1';
 
-export const installHandler = (event: ExtendableEvent) => {
-	sw.skipWaiting();
+export function installHandler(this: ServiceWorkerEnvironment, event: ExtendableEvent) {
+	this.serviceWorker.skipWaiting();
 	// console.log('install');
 	event.waitUntil(
 		caches.open(CACHE_NAME)
-			.then(cache => {
-				// console.log('Opened cache');
-				// return cache.addAll(urlsToCache);
-			}),
+			// .then(cache => {
+			// 	// console.log('Opened cache');
+			// 	// return cache.addAll(urlsToCache);
+			// }),
 	);
 };

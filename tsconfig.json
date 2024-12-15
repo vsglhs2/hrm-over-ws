@@ -28,11 +28,17 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
-    }
+      ],
+    },
+    "outDir": "./dist",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+"composite": true
   },
-  "include": [
-    "src",
-    "src/client/service-worker/.ts"
-  ],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
+  "buildOptions": {
+    "incremental": true,
+    "force": true,
+  },
+  "files": ["index.ts"],
 }

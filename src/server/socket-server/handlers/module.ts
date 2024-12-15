@@ -40,7 +40,7 @@ export async function moduleHandler(
 		res.req = req;
 
 		const serialized = await this.serializers.response.serialize(res);
-		ack(serialized.buffer);
+		ack(serialized.buffer as ArrayBuffer);
 	} catch (err) {
 		const error = err instanceof Error ? err : new Error('Unknown error: ' + String(err));
 		console.error(`Error during fetching module from ${this.socketAppendix}:`, error.message);
@@ -52,6 +52,6 @@ export async function moduleHandler(
 		res.end(error.message);
 
 		const serialized = await this.serializers.response.serialize(res);
-		ack(serialized.buffer);
+		ack(serialized.buffer as ArrayBuffer);
 	}
 }

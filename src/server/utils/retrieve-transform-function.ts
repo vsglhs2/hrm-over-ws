@@ -12,5 +12,6 @@ export function retrieveTransformFunctionFromServer(server: ViteDevServer) {
 
 	if (!item) throw new Error('Can\'t find viteTransformMiddleware function');
 
+	// @ts-expect-error TODO: fix type error
 	return item.handle as FunctionToAsync<Connect.NextHandleFunction>;
 }

@@ -4,7 +4,7 @@ When i was trying to use code-server remotely and ran vite powered app, i faced 
 
 # State
 
-This plugin is a proof of concept and primary just side project of me to trying to improve experience for my own use case. I can assume that it can be helpful for some people, but i think in most cases there is a problem with slowness in local environment caused by 1000+ requests. It is well know problem with vite, but as it is part of its core decisions (transform modules on fly with ESM modules), there not so much to do without trying to make it to be more webpack like and it is not issue i target by this project. Some performance gains in theory can be accomplished, through, but it is not feasible to say if it could work well enough.
+This plugin is a proof of concept and primary just side project of me to trying to improve experience for my own use case. I can assume that it can be helpful for some people, but i think in most cases there is a problem with slowness in local environment caused by 1000+ requests. It is well know problem with vite, but as it is part of its core decisions (transform modules on fly with ESM modules), there not so much to do without trying to make it to be more webpack like and it is not issue i target by this project. Some performance gains in theory can be accomplished, though, but it is not feasible to say if it could work well enough.
 
 # TODO
 
@@ -38,6 +38,12 @@ This plugin is a proof of concept and primary just side project of me to trying 
 -   make caching be in-memory (maybe add option to utilize cache api or OPFS caching?)
 -   add zstd compression with dictionaries
 -   test with https://github.com/michalzubkowicz/slow-vite-demo.git
+-   explore if it is possible to use blob urls for faster processing then simply return response from in-memory stored array buffer
+-   explore how to change all static imports by dynamic imports for such use case
+-   test performance of all static vs all dynamic imports (maybe dynamic imports will be slower, so approach would be dead end)
+-   explore if it is possible to update import using array buffer instead of some form of url - no possible directly
+-   test if immediate response cloning (right at the moment when deserialization done) will be faster then cloning on demand
+-   think about environment swap (on client, particularly)
 
 # Potential problems
 
@@ -68,5 +74,5 @@ This plugin is a proof of concept and primary just side project of me to trying 
 -   let module transport consist of cache, serialize, compress, (pool -> socket, socket, fetch, buffered) layers
 -   let server side have respective transports with same layers
 -   let http fetch layers have http server layer
--   let fetch patch middleware override res.end function and pass response through fetch transport layers before sending response back (is it okay through?) (must be aware that headers can be already sent at this moment, but its okay, while it is only for body compression) (maybe fetched body better be decompressed by browser with special header? It is more appropriate, but manual decompressing seems aligning with other layers (socket, etc))
+-   let fetch patch middleware override res.end function and pass response through fetch transport layers before sending response back (is it okay trough?) (must be aware that headers can be already sent at this moment, but its okay, while it is only for body compression) (maybe fetched body better be decompressed by browser with special header? It is more appropriate, but manual decompressing seems aligning with other layers (socket, etc))
 -   move transport options to feature set

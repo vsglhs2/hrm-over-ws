@@ -1,4 +1,4 @@
-import { Plugin } from 'vite';
+import { PluginOption } from 'vite';
 
 import { ServerEnvironment } from '@/lib/environment';
 import { resolveOptions } from '@/lib/utils';
@@ -11,8 +11,8 @@ const packageVersion = JSON.stringify(process.env.npm_package_version);
 const packageName = JSON.stringify(process.env.npm_package_name);
 
 export default function hrmOverSocketPlugin(
-	options?: Partial<PluginOptions>,
-): Plugin {
+	options: Partial<PluginOptions> = {},
+): PluginOption {
 	let resolvedOptions: PluginOptions;
 
 	return {
@@ -30,6 +30,10 @@ export default function hrmOverSocketPlugin(
 						resolvedOptions.constants.serviceWorker.installedHeader,
 					__SERVICE_WORKER_SCRIPT_PATH__:
 						resolvedOptions.constants.serviceWorker.scriptPath,
+					__SERVICE_WORKER_INSTALL_PAGE_PATH__:
+						resolvedOptions.constants.serviceWorker.installPagePath,
+					__SERVICE_WORKER_INSTALL_PAGE_SOURCES___:
+						resolvedOptions.constants.serviceWorker.installPageSources,
 					__PLUGIN_VERSION__: packageVersion,
 					__PLUGIN_NAME__: packageName,
 					__EVENT_PREFIX__: resolvedOptions.constants.eventPrefix,
@@ -52,3 +56,4 @@ export default function hrmOverSocketPlugin(
 		},
 	};
 }
+

@@ -25,6 +25,8 @@ export default [
 			'semi': ['error', 'always'],
 			'indent': ['warn', 'tab'],
 
+			'@typescript-eslint/no-unused-vars': 'warn',
+
 			'import/order': [
 				'error',
 				{

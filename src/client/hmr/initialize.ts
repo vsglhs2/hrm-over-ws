@@ -1,19 +1,25 @@
+import { ServiceWorkerEnvironment } from '@/lib/environment';
+import { ServiceWorkerHandler } from '../service-worker/handlers/handler';
+
 export function applyHMRHandlers(
-	hot: ServiceWorkerGlobalScope,
+	this: ServiceWorkerEnvironment,
 	handlers: ServiceWorkerHandler[],
 ) {
 	for (const handler of handlers) {
-		sw.addEventListener(
+		this.hot.on(
 			handler.type,
 			handler.listener,
-			handler.options,
 		);
 	}
 }
 
 export function initializeHMR(
-	hot: ServiceWorkerGlobalScope,
+	this: ServiceWorkerEnvironment,
 	handlers: ServiceWorkerHandler[],
 ) {
-	applyHMRHandlers(sw, handlers);
+	this.hot.accept();
+
+	// hot.dispose(() => store.handler.close());
+
+	applyHMRHandlers.call(this, handlers);
 }

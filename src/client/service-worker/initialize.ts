@@ -1,11 +1,12 @@
+import { ServiceWorkerEnvironment } from '@/lib/environment';
 import { ServiceWorkerHandler } from './handlers/handler';
 
 export function applyServiceWorkerHandlers(
-	sw: ServiceWorkerGlobalScope,
+	this: ServiceWorkerEnvironment,
 	handlers: ServiceWorkerHandler[],
 ) {
 	for (const handler of handlers) {
-		sw.addEventListener(
+		this.serviceWorker.addEventListener(
 			handler.type,
 			handler.listener,
 			handler.options,
@@ -14,8 +15,8 @@ export function applyServiceWorkerHandlers(
 }
 
 export function initializeServiceWorker(
-	sw: ServiceWorkerGlobalScope,
+	this: ServiceWorkerEnvironment,
 	handlers: ServiceWorkerHandler[],
 ) {
-	applyServiceWorkerHandlers(sw, handlers);
+	applyServiceWorkerHandlers.call(this, handlers);
 }

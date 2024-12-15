@@ -3,10 +3,10 @@ import { isSameObject } from '@/lib/utils';
 import { createTransport } from './create-transport';
 import { JsonSerializer } from '@/lib/serializer';
 import { reviverFunction } from '@/lib/utils/json-transform-functions';
-import { ClientEnvironment } from '@/lib/environment';
+import { ServiceWorkerEnvironment } from '@/lib/environment';
 import { PluginOptions } from '@/options';
 
-export function initializationHandler(this: ClientEnvironment, optionsBuffer: ArrayBuffer) {
+export function initializationHandler(this: ServiceWorkerEnvironment, optionsBuffer: ArrayBuffer) {
 	const jsonSerializer = new JsonSerializer({
 		reviver: reviverFunction,
 	});
@@ -29,9 +29,7 @@ export function initializationHandler(this: ClientEnvironment, optionsBuffer: Ar
 	console.log('Closed previous handler: ', oldHandler.constructor.name);
 
 	const transport = createTransport(options.transport.variant, options.transport.options);
-	// @ts-expect-error TODO: fix type when refactor
 	this.moduleHandler = new TransportModuleHandler(transport);
-	// @ts-expect-error TODO: fix type when refactor
 	this.options = options;
 
 	console.log('Created new handler: ', oldHandler.constructor.name);

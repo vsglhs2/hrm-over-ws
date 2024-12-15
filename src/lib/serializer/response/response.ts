@@ -1,4 +1,3 @@
-
 import { getHeadersRecord, concatUInt8Arrays } from '@/lib/utils';
 import { NUMBER_BYTES_LENGTH, ResponseJson } from './utils';
 import { JsonSerializer } from '../json';

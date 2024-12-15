@@ -1,12 +1,12 @@
-import { TransportModuleHandler } from '@/lib/handler';
+import { RequestHandler } from '@/lib/handler';
 import { Environment, EnvironmentOptions } from '../base';
 
-type ClientEnvironmentOptions = EnvironmentOptions & {
-	moduleHandler: TransportModuleHandler;
+export type ClientEnvironmentOptions = EnvironmentOptions & {
+	moduleHandler: RequestHandler;
 };
 
 export class ClientEnvironment extends Environment {
-	public readonly moduleHandler: TransportModuleHandler;
+	public moduleHandler: RequestHandler;
 
 	constructor({ options, moduleHandler }: ClientEnvironmentOptions) {
 		super({ options });

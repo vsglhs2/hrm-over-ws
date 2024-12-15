@@ -1,12 +1,16 @@
+import { PartialClientEnvironment } from '@/lib/environment';
 import { ServiceWorkerMessageType } from './service-worker/handlers/message/utils';
+import { PARTIAL_OPTIONS } from '@/lib/environment/client/partial';
+
+const environment = new PartialClientEnvironment(PARTIAL_OPTIONS);
 
 if (import.meta.hot && navigator.serviceWorker) {
 	const baseUrl = import.meta.env.BASE_URL;
-	const scriptUrl = baseUrl + __SERVICE_WORKER_SCRIPT_PATH__;
+	const scriptUrl = baseUrl + environment.options.constants.serviceWorker.scriptPath;
 
 	const registrations = await navigator.serviceWorker.getRegistrations();
 	if (!registrations.length) {
-		document.cookie = `${__SERVICE_WORKER_INSTALLED_HEADER__}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+		document.cookie = `${environment.options.constants.serviceWorker.installedHeader}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
 	}
 
 	navigator.serviceWorker.register(scriptUrl, {

@@ -1,10 +1,12 @@
+import { ServiceWorkerEnvironment } from '@/lib/environment';
+
 export type ServiceWorkerHandler<
     Type extends keyof ServiceWorkerGlobalScopeEventMap
     = keyof ServiceWorkerGlobalScopeEventMap
 > = {
     type: Type;
     listener: (
-        this: ServiceWorkerGlobalScope,
+        this: ServiceWorkerEnvironment,
         ev: ServiceWorkerGlobalScopeEventMap[Type]
     ) => unknown;
     options?: boolean | AddEventListenerOptions;
@@ -22,6 +24,9 @@ export const handler = <
 		options?: ServiceWorkerHandler<Type>['options'],
 	): ServiceWorkerHandler => ({
 		type: type,
-		listener: listener as unknown as (e: Event) => void,
+		listener: listener as unknown as (
+            this: ServiceWorkerEnvironment,
+            e: Event
+        ) => void,
 		options: options,
 	});

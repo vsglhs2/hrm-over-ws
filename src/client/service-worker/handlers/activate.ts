@@ -1,4 +1,6 @@
-export const activateHandler = (event: ExtendableEvent) => {
+import { ServiceWorkerEnvironment } from '@/lib/environment';
+
+export function activateHandler(this: ServiceWorkerEnvironment, event: ExtendableEvent) {
 	// console.log('activate');
-	event.waitUntil(sw.clients.claim());
+	event.waitUntil(this.serviceWorker.clients.claim());
 };

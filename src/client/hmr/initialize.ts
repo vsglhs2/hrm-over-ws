@@ -1,4 +1,4 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment';
+import { ServiceWorkerEnvironment } from '@/lib/environment/client';
 import { ServiceWorkerHandler } from '../service-worker/handlers/handler';
 
 export function applyHMRHandlers(

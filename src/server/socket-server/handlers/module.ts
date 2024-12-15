@@ -2,7 +2,7 @@ import httpMocks, { RequestMethod } from 'node-mocks-http';
 import { ServerResponse } from 'node:http';
 import { Connect } from 'vite';
 
-import { SocketEnvironment } from '@/lib/environment';
+import { SocketEnvironment } from '@/lib/environment/server';
 import { getHeadersRecord } from '@/lib/utils';
 import { retrieveTransformFunctionFromServer } from '@/server/utils';
 

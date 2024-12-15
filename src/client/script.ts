@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-import { ServiceWorkerEnvironment } from '@/lib/environment';
+import { ServiceWorkerEnvironment } from '@/lib/environment/client';
 import { initializeHMR } from './hmr/initialize';
 import { activateHandler, fetchHandler, handler, initializeServiceWorker, installHandler, messageHandler } from './service-worker';
 import { PARTIAL_OPTIONS } from '@/lib/environment/client/partial';

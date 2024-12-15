@@ -1,4 +1,4 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment';
+import { ServiceWorkerEnvironment } from '@/lib/environment/client';
 import { ServiceWorkerMessage, ServiceWorkerMessageType } from './utils';
 
 export function messageHandler(this: ServiceWorkerEnvironment, event: ExtendableMessageEvent) {

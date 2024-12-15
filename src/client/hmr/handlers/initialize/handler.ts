@@ -3,7 +3,7 @@ import { isSameObject } from '@/lib/utils';
 import { createTransport } from './create-transport';
 import { JsonSerializer } from '@/lib/serializer';
 import { reviverFunction } from '@/lib/utils/json-transform-functions';
-import { ServiceWorkerEnvironment } from '@/lib/environment';
+import { ServiceWorkerEnvironment } from '@/lib/environment/client';
 import { PluginOptions } from '@/options';
 
 export function initializationHandler(this: ServiceWorkerEnvironment, optionsBuffer: ArrayBuffer) {

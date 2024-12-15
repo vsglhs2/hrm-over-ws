@@ -1,4 +1,4 @@
-import { ServerEnvironment } from '@/lib/environment';
+import { ServerEnvironment } from '@/lib/environment/server';
 import { JsonSerializer } from '@/lib/serializer';
 import { replacerFunction } from '@/lib/utils/json-transform-functions';
 

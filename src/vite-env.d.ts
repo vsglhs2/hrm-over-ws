@@ -1,5 +1,8 @@
 /// <reference types="vite/client" />
 
+import { InferCustomEventPayload } from 'vite';
+import { ModuleNamespace } from 'vite/types/hot.js';
+
 declare const __PLUGIN_VERSION__: string;
 declare const __PLUGIN_NAME__: string;
 declare const __SERVICE_WORKER_INSTALLED_HEADER__: string;

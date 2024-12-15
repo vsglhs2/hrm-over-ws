@@ -20,6 +20,6 @@ export const handler = <
 		listener: HMRHandler<Type>['listener'],
 	): HMRHandler => ({
 		type: type,
-        // @ts-expect-error TODO: fix type error
+		// @ts-expect-error TODO: fix type error
 		listener: listener as unknown as (e: Event) => void,
 	});

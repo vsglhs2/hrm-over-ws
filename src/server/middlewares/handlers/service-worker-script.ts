@@ -1,7 +1,7 @@
 import { Connect } from 'vite';
 import { ServerResponse } from 'node:http';
 
-import { ServerEnvironment } from '@/lib/environment';
+import { ServerEnvironment } from '@/lib/environment/server';
 
 export function serviceWorkerScriptMiddleware(
 	this: ServerEnvironment,

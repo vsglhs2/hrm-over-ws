@@ -1,4 +1,4 @@
-import { PartialClientEnvironment } from '@/lib/environment';
+import { PartialClientEnvironment } from '@/lib/environment/client';
 import { ServiceWorkerMessageType } from './service-worker/handlers/message/utils';
 import { PARTIAL_OPTIONS } from '@/lib/environment/client/partial';
 

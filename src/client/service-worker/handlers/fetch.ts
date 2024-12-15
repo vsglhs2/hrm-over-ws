@@ -1,4 +1,4 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment';
+import { ServiceWorkerEnvironment } from '@/lib/environment/client';
 
 const urlsToFetch = [
 	/src\/*/,

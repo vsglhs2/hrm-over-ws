@@ -13,8 +13,8 @@ export default [
 			'@stylistic/js': stylisticJsPlugin,
 			'import': importPlugin,
 		},
-		files: ['**/*.{js,mjs,cjs,ts}'],
-		ignores: ['node_modules/*'],
+		files: ['**/*.{js,mjs,cjs,ts,d.ts}'],
+		ignores: ['node_modules/*', 'dist/*', 'build/*'],
 		rules: {
 			'@stylistic/js/eol-last': ['error', 'always'],
 			'@stylistic/js/no-trailing-spaces': ['error'],

@@ -1,7 +1,7 @@
 import { Connect } from 'vite';
 import { ServerResponse } from 'node:http';
 
-import { ServerEnvironment } from '@/lib/environment';
+import { ServerEnvironment } from '@/lib/environment/server';
 
 export function installMiddleware(this: ServerEnvironment,
 	req: Connect.IncomingMessage,
@@ -19,7 +19,8 @@ export function installMiddleware(this: ServerEnvironment,
 		req.url !== '/' && installPageSources.some(
 			url => req.url && (url.includes(req.url) || req.url.includes(url)),
 		) ||
-		req.headers['sec-fetch-dest'] === 'serviceworker'
+		req.headers['sec-fetch-dest'] === 'serviceworker' ||
+		req.url === installPagePath
 	) {
 		return next();
 	}

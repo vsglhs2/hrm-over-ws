@@ -1,7 +1,7 @@
-import { PluginOption } from 'vite';
+import { Plugin } from 'vite';
 
-import { ServerEnvironment } from '@/lib/environment';
-import { resolveOptions } from '@/lib/utils';
+import { ServerEnvironment } from '@/lib/environment/server';
+import { RecursivePartial, resolveOptions } from '@/lib/utils';
 import { getDefaultOptions, pluginName, PluginOptions } from '@/options';
 import { initializeHMR } from './hmr';
 import { initializeServer } from './middlewares/initialize';
@@ -11,8 +11,8 @@ const packageVersion = JSON.stringify(process.env.npm_package_version);
 const packageName = JSON.stringify(process.env.npm_package_name);
 
 export default function hrmOverSocketPlugin(
-	options: Partial<PluginOptions> = {},
-): PluginOption {
+	options: RecursivePartial<PluginOptions> = {},
+): Plugin {
 	let resolvedOptions: PluginOptions;
 
 	return {
@@ -50,6 +50,8 @@ export default function hrmOverSocketPlugin(
 				server,
 			});
 
+			console.log('resolved options:', environment.options)
+
 			initializeServer.call(environment);
 			initializeSocketServer.call(environment);
 			initializeHMR.call(environment);
@@ -57,3 +59,6 @@ export default function hrmOverSocketPlugin(
 	};
 }
 
+export type {
+	PluginOptions as HRMOverSocketPluginOptions,
+};

@@ -1,6 +1,7 @@
 
 import { TransportConfig, TransportVariant } from '@/lib/transport/types';
 import { UserConfig } from 'vite';
+import packageJson from '../package.json';
 
 export type PluginFeatures = {
 	prefetch: boolean;
@@ -36,8 +37,8 @@ export type PluginOptions<
 // export const pluginName = __PLUGIN_NAME__;
 // export const pluginVersion = __PLUGIN_VERSION__;
 
-export const pluginName = process.env.npm_package_name as string;
-export const pluginVersion = process.env.npm_package_version as string;
+export const pluginName = packageJson.name;
+export const pluginVersion = packageJson.version;
 
 const defaultHost = 'localhost';
 const defaultPort = 5173;
@@ -59,9 +60,9 @@ export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 			installPagePath: '/install-service-worker',
 			installPageSources: [
 				'/@vite/client',
-				'/src/install.ts',
+				'/dist/client/install.js',
 				'/node_modules/vite/dist/client/env.mjs',
-				'/src/service-worker/sw.ts',
+				'/dist/client/script.js',
 			],
 		},
 	},

@@ -1,3 +1,4 @@
+export { mergeDeep } from './merge-deep';
 export { resolveOptions } from './resolve-options';
 export { createEventNamer } from './create-event-namer';
 export { isSameObject } from './is-same-object';

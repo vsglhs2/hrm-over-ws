@@ -2,13 +2,10 @@ import { Plugin } from 'vite';
 
 import { ServerEnvironment } from '@/lib/environment/server';
 import { RecursivePartial, resolveOptions } from '@/lib/utils';
-import { getDefaultOptions, pluginName, PluginOptions } from '@/options';
+import { getDefaultOptions, pluginName, pluginVersion, PluginOptions } from '@/options';
 import { initializeHMR } from './hmr';
 import { initializeServer } from './middlewares/initialize';
 import { initializeSocketServer } from './socket-server/initialize';
-
-const packageVersion = JSON.stringify(process.env.npm_package_version);
-const packageName = JSON.stringify(process.env.npm_package_name);
 
 export default function hrmOverSocketPlugin(
 	options: RecursivePartial<PluginOptions> = {},
@@ -18,7 +15,7 @@ export default function hrmOverSocketPlugin(
 	return {
 		name: pluginName,
 		apply: 'serve',
-		version: packageVersion,
+		version: pluginVersion,
 
 		config(config) {
 			const defaultOptions = getDefaultOptions(config);
@@ -27,16 +24,16 @@ export default function hrmOverSocketPlugin(
 			return {
 				define: {
 					__SERVICE_WORKER_INSTALLED_HEADER__:
-						resolvedOptions.constants.serviceWorker.installedHeader,
+						JSON.stringify(resolvedOptions.constants.serviceWorker.installedHeader),
 					__SERVICE_WORKER_SCRIPT_PATH__:
-						resolvedOptions.constants.serviceWorker.scriptPath,
+						JSON.stringify(resolvedOptions.constants.serviceWorker.scriptPath),
 					__SERVICE_WORKER_INSTALL_PAGE_PATH__:
-						resolvedOptions.constants.serviceWorker.installPagePath,
+						JSON.stringify(resolvedOptions.constants.serviceWorker.installPagePath),
 					__SERVICE_WORKER_INSTALL_PAGE_SOURCES___:
-						resolvedOptions.constants.serviceWorker.installPageSources,
-					__PLUGIN_VERSION__: packageVersion,
-					__PLUGIN_NAME__: packageName,
-					__EVENT_PREFIX__: resolvedOptions.constants.eventPrefix,
+						JSON.stringify(resolvedOptions.constants.serviceWorker.installPageSources),
+					__PLUGIN_VERSION__: JSON.stringify(pluginVersion),
+					__PLUGIN_NAME__: JSON.stringify(pluginName),
+					__EVENT_PREFIX__: JSON.stringify(resolvedOptions.constants.eventPrefix),
 				},
 			};
 		},

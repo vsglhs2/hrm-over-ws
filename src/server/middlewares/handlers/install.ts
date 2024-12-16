@@ -2,6 +2,9 @@ import { Connect } from 'vite';
 import { ServerResponse } from 'node:http';
 
 import { ServerEnvironment } from '@/lib/environment/server';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { pluginName } from '@/options';
 
 export function installMiddleware(this: ServerEnvironment,
 	req: Connect.IncomingMessage,
@@ -19,10 +22,26 @@ export function installMiddleware(this: ServerEnvironment,
 		req.url !== '/' && installPageSources.some(
 			url => req.url && (url.includes(req.url) || req.url.includes(url)),
 		) ||
-		req.headers['sec-fetch-dest'] === 'serviceworker' ||
-		req.url === installPagePath
-	) {
+		req.headers['sec-fetch-dest'] === 'serviceworker') {
 		return next();
+	}
+
+	if (req.url === installPagePath) {
+		const resolvedPath = path.resolve(__dirname, '../../assets/install.html');
+		const resolvedSourcePath = path.join(
+			'node_modules',
+			pluginName,
+			'dist/client/install.js'
+		);
+
+		const scriptString = readFileSync(resolvedPath, {
+			encoding: 'utf-8',
+		}).replace('<%--SCRIPT_SOURCE--%>', resolvedSourcePath);
+
+		res.setHeader('content-type', 'text/html');
+		res.write(scriptString);
+
+		return res.end();
 	}
 
 	res.writeHead(302, {

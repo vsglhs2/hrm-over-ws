@@ -3,7 +3,7 @@
   "keywords": [
     "vite-plugin"
   ],
-  "main": "dist/src/index.js",
+  "main": "dist/server/src/index.js",
   "files": [
     "dist"
   ],
@@ -11,15 +11,25 @@
   "version": "0.0.1",
   "type": "commonjs",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "build:server": "tsc --project tsconfig.plugin.build.json && tsc-alias -p tsconfig.plugin.build.json --resolve-full-paths",
-    "preview": "vite preview",
+    "build": "npm run build:server && npm run build:client",
+    "build:client:bundle:install": "rollup -i dist/client/src/client/install.js -o dist/client/install.js -f es",
+    "build:client:bundle:register": "rollup -i dist/client/src/client/register.js -o dist/client/register.js -f es",
+    "build:client:bundle:worker": "rollup -c",
+    "build:client:bundle": "npm run build:client:bundle:install && npm run build:client:bundle:register && npm run build:client:bundle:worker",
+    "build:client:build": "tsc --project tsconfig.client.build.json",
+    "build:client:alias": "tsc-alias -p tsconfig.client.build.json --resolve-full-paths",
+    "build:client": "npm run build:client:build && npm run build:client:alias && npm run build:client:bundle",
+    "build:server:build": "tsc --project tsconfig.server.build.json",
+    "build:server:alias": "tsc-alias -p tsconfig.server.build.json --resolve-full-paths",
+    "build:server:copy": "cp -r src/server/assets dist/server/src/server/assets && cp package.json dist/server/package.json",
+    "build:server": "npm run build:server:build && npm run build:server:alias && npm run build:server:copy",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
     "@stylistic/eslint-plugin-js": "^2.11.0",
     "@types/lodash": "^4.17.13",
     "@typescript-eslint/eslint-plugin": "^8.16.0",
@@ -27,6 +37,7 @@
     "eslint": "^9.16.0",
     "eslint-plugin-import": "^2.31.0",
     "globals": "^15.13.0",
+    "rollup": "^4.28.1",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.1-rc",
     "typescript-eslint": "^8.16.0",

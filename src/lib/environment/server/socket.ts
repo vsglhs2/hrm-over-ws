@@ -1,7 +1,8 @@
 import { Server } from 'socket.io';
 
-import { RequestSerializer, ServerResponseSerializer } from '@/lib/serializer';
+import { RequestSerializer } from '@/lib/serializer';
 import { ServerEnvironment } from './server';
+import { ServerResponseSerializer } from '@/lib/serializer/response/server';
 
 type SocketEnvironmentOptions = ServerEnvironment & {
     io: Server;

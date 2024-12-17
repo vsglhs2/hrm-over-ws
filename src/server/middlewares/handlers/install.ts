@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { pluginName } from '@/options';
 
-export function installMiddleware(this: ServerEnvironment,
+export async function installMiddleware(this: ServerEnvironment,
 	req: Connect.IncomingMessage,
 	res: ServerResponse,
 	next: Connect.NextFunction,
@@ -28,18 +28,20 @@ export function installMiddleware(this: ServerEnvironment,
 
 	if (req.url === installPagePath) {
 		const resolvedPath = path.resolve(__dirname, '../../assets/install.html');
-		const resolvedSourcePath = path.join(
+		const resolvedSourcePath = [
 			'node_modules',
 			pluginName,
 			'dist/client/install.js'
-		);
+		].join('/');
 
 		const scriptString = readFileSync(resolvedPath, {
 			encoding: 'utf-8',
 		}).replace('<%--SCRIPT_SOURCE--%>', resolvedSourcePath);
 
+		const transformedHtml = await this.server.transformIndexHtml(req.url, scriptString);
+
 		res.setHeader('content-type', 'text/html');
-		res.write(scriptString);
+		res.write(transformedHtml);
 
 		return res.end();
 	}

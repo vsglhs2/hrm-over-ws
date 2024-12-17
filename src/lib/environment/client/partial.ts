@@ -24,7 +24,7 @@ export const PARTIAL_OPTIONS: PartialClientEnvironmentOptions = {
 				installedHeader: __SERVICE_WORKER_INSTALLED_HEADER__,
 				scriptPath: __SERVICE_WORKER_SCRIPT_PATH__,
 				installPagePath: __SERVICE_WORKER_INSTALL_PAGE_PATH__,
-				installPageSources: __SERVICE_WORKER_INSTALL_PAGE_SOURCES___,
+				installPageSources: __SERVICE_WORKER_INSTALL_PAGE_SOURCES__,
 			},
 		},
 	},

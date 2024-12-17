@@ -4,7 +4,7 @@ declare const __PLUGIN_VERSION__: string;
 declare const __PLUGIN_NAME__: string;
 declare const __SERVICE_WORKER_INSTALLED_HEADER__: string;
 declare const __SERVICE_WORKER_INSTALL_PAGE_PATH__: string;
-declare const __SERVICE_WORKER_INSTALL_PAGE_SOURCES___: string[];
+declare const __SERVICE_WORKER_INSTALL_PAGE_SOURCES__: string[];
 declare const __SERVICE_WORKER_SCRIPT_PATH__: string;
 
 declare const __EVENT_PREFIX__: string;

@@ -11,9 +11,9 @@
   "version": "0.0.1",
   "type": "commonjs",
   "scripts": {
-    "build": "npm run build:server && npm run build:client",
-    "build:client:bundle:install": "rollup -i dist/client/src/client/install.js -o dist/client/install.js -f es",
-    "build:client:bundle:register": "rollup -i dist/client/src/client/register.js -o dist/client/register.js -f es",
+    "build": "rm -rf dist && npm run build:server && npm run build:client",
+    "build:client:bundle:install": "rollup -i dist/client/src/client/install.js -o dist/client/src/install-bundle.js -f es",
+    "build:client:bundle:register": "rollup -i dist/client/src/client/register.js -o dist/client/src/register-bundle.js -f es",
     "build:client:bundle:worker": "rollup -c",
     "build:client:bundle": "npm run build:client:bundle:install && npm run build:client:bundle:register && npm run build:client:bundle:worker",
     "build:client:build": "tsc --project tsconfig.client.build.json",

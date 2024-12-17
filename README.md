@@ -8,6 +8,7 @@ This plugin is a proof of concept and primary just side project of me to trying 
 
 # TODO
 
+-   use server.transformRequest instead of using mocks and retrieving transform middleware
 -   figure out why direct default import doesn't work when trying to test plugin
 -   fix vite-env.d.ts file (it is not being referenced by ts somehow) - ok
 -   add linter

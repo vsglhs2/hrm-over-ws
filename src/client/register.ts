@@ -2,9 +2,9 @@ import { PartialClientEnvironment } from '@/lib/environment/client';
 import { ServiceWorkerMessageType } from './service-worker/handlers/message/utils';
 import { PARTIAL_OPTIONS } from '@/lib/environment/client/partial';
 
-const environment = new PartialClientEnvironment(PARTIAL_OPTIONS);
+if (import.meta.hot) {
+	const environment = new PartialClientEnvironment(PARTIAL_OPTIONS);
 
-if (import.meta.hot && navigator.serviceWorker) {
 	const baseUrl = import.meta.env.BASE_URL;
 	const scriptUrl = baseUrl + environment.options.constants.serviceWorker.scriptPath;
 

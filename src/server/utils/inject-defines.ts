@@ -1,5 +1,26 @@
-import { pluginName } from '@/options';
+import { ServerEnvironment } from '@/lib/environment/server';
+import { pluginName, pluginVersion } from '@/options';
 import child_process from 'node:child_process';
+
+export function createDefines(environment: ServerEnvironment) {
+	return {
+		__SERVICE_WORKER_INSTALLED_HEADER__:
+			JSON.stringify(environment.options.constants.serviceWorker.installedHeader),
+		__SERVICE_WORKER_SCRIPT_PATH__:
+			JSON.stringify(environment.options.constants.serviceWorker.scriptPath),
+		__SERVICE_WORKER_INSTALL_PAGE_PATH__:
+			JSON.stringify(environment.options.constants.serviceWorker.installPagePath),
+		__SERVICE_WORKER_INSTALL_PAGE_SOURCES__:
+			JSON.stringify(
+				environment.options.constants.serviceWorker.installPageSources
+			),
+		__PLUGIN_VERSION__: JSON.stringify(pluginVersion),
+		__PLUGIN_NAME__: JSON.stringify(pluginName),
+		__EVENT_PREFIX__: JSON.stringify(environment.options.constants.eventPrefix),
+		__BASE_URL__: JSON.stringify(environment.options.constants.baseUrl),
+		__PLUGIN_PATH__: JSON.stringify(environment.options.constants.pluginPath),
+	};
+}
 
 function buildInjectString(
 	inputFile: string,

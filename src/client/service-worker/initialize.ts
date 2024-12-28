@@ -8,7 +8,7 @@ export function applyServiceWorkerHandlers(
 	for (const handler of handlers) {
 		this.serviceWorker.addEventListener(
 			handler.type,
-			handler.listener,
+			handler.listener.bind(this),
 			handler.options,
 		);
 	}

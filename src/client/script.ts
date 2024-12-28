@@ -15,7 +15,7 @@ const environment = new ServiceWorkerEnvironment({
 	serviceWorker: self as unknown as ServiceWorkerGlobalScope,
 	// @ts-expect-error TODO: fix type when reconsider environments swap
 	options: undefined,
-	partialOptions: PARTIAL_OPTIONS,
+	partialOptions: PARTIAL_OPTIONS.options,
 	moduleHandler: new BufferedHandler(),
 });
 

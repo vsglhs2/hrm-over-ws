@@ -19,6 +19,8 @@ export class PartialClientEnvironment {
 export const PARTIAL_OPTIONS: PartialClientEnvironmentOptions = {
 	options: {
 		constants: {
+			baseUrl: __BASE_URL__,
+			pluginPath: __PLUGIN_PATH__,
 			eventPrefix: __EVENT_PREFIX__,
 			serviceWorker: {
 				installedHeader: __SERVICE_WORKER_INSTALLED_HEADER__,

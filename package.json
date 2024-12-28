@@ -5,7 +5,7 @@
   ],
   "main": "dist/server/src/index.js",
   "files": [
-    "dist"
+    "dist/"
   ],
   "private": true,
   "version": "0.0.1",

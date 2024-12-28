@@ -8,6 +8,7 @@ This plugin is a proof of concept and primary just side project of me to trying 
 
 # TODO
 
+-   does defines even needed?
 -   use server.transformRequest instead of using mocks and retrieving transform middleware
 -   figure out why direct default import doesn't work when trying to test plugin
 -   fix vite-env.d.ts file (it is not being referenced by ts somehow) - ok
@@ -47,6 +48,7 @@ This plugin is a proof of concept and primary just side project of me to trying 
 -   explore if it is possible to update import using array buffer instead of some form of url - no possible directly
 -   test if immediate response cloning (right at the moment when deserialization done) will be faster then cloning on demand
 -   think about environment swap (on client, particularly)
+-   maybe try to add option to prebundle files based on some pattern (i. e. join files in subdirectory) and treat them as single module?
 
 # Potential problems
 

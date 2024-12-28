@@ -5,19 +5,20 @@ import { PartialClientEnvironmentOptions } from '../partial';
 type ServiceWorkerEnvironmentOptions = ClientEnvironmentOptions & {
     serviceWorker: ServiceWorkerGlobalScope;
 	hot: ViteHotContext;
-	partialOptions: PartialClientEnvironmentOptions;
+	partialOptions: PartialClientEnvironmentOptions['options'];
 	options: PluginOptions | undefined;
 };
 
 export class ServiceWorkerEnvironment extends ClientEnvironment {
 	public readonly serviceWorker: ServiceWorkerGlobalScope;
 	public readonly hot: ViteHotContext;
-	public readonly partialOptions: PartialClientEnvironmentOptions;
+	public readonly partialOptions: PartialClientEnvironmentOptions['options'];
 	// @ts-expect-error TODO: fix type later
 	declare options: PluginOptions | undefined;
 
-	constructor({ options, serviceWorker, hot, moduleHandler, partialOptions }: ServiceWorkerEnvironmentOptions) {
-		super({ options, moduleHandler });
+	constructor({ serviceWorker, hot, moduleHandler, partialOptions }: ServiceWorkerEnvironmentOptions) {
+		// @ts-ignore
+		super({ options: partialOptions, moduleHandler });
 
 		this.serviceWorker = serviceWorker;
 		this.hot = hot;

@@ -8,6 +8,8 @@ declare const __SERVICE_WORKER_INSTALL_PAGE_SOURCES__: string[];
 declare const __SERVICE_WORKER_SCRIPT_PATH__: string;
 
 declare const __EVENT_PREFIX__: string;
+declare const __BASE_URL__: string;
+declare const __PLUGIN_PATH__: string;
 
 // interface ImportMetaEnv {}
 

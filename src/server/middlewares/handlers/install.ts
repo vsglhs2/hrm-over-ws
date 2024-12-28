@@ -1,4 +1,4 @@
-import { Connect } from 'vite';
+import { Connect,  } from 'vite';
 import { ServerResponse } from 'node:http';
 
 import { ServerEnvironment } from '@/lib/environment/server';
@@ -22,7 +22,8 @@ export async function installMiddleware(this: ServerEnvironment,
 		req.url !== '/' && installPageSources.some(
 			url => req.url && (url.includes(req.url) || req.url.includes(url)),
 		) ||
-		req.headers['sec-fetch-dest'] === 'serviceworker') {
+		req.headers['sec-fetch-dest'] === 'serviceworker'
+	 ) {
 		return next();
 	}
 
@@ -34,11 +35,11 @@ export async function installMiddleware(this: ServerEnvironment,
 			'dist/client/install.js'
 		].join('/');
 
-		const scriptString = readFileSync(resolvedPath, {
+		const pageString = readFileSync(resolvedPath, {
 			encoding: 'utf-8',
 		}).replace('<%--SCRIPT_SOURCE--%>', resolvedSourcePath);
 
-		const transformedHtml = await this.server.transformIndexHtml(req.url, scriptString);
+		const transformedHtml = await this.server.transformIndexHtml(req.url, pageString);
 
 		res.setHeader('content-type', 'text/html');
 		res.write(transformedHtml);

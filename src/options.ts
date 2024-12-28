@@ -11,6 +11,8 @@ export type PluginFeatures = {
 };
 
 export type PluginConstants = {
+	pluginPath: string;
+	baseUrl: string;
 	eventPrefix: string;
 	serviceWorker: {
 		scriptPath: string;
@@ -25,6 +27,11 @@ export type PluginHandler = {
 	isExternalServiceWorker: boolean;
 };
 
+export type PluginSettings = {
+	watch: boolean;
+	log: number;
+}
+
 export type PluginOptions<
 	Variant extends TransportVariant = TransportVariant
 > = {
@@ -32,10 +39,8 @@ export type PluginOptions<
 	constants: PluginConstants;
 	transport: TransportConfig<Variant>;
 	handler: PluginHandler;
+	settings: PluginSettings;
 };
-
-// export const pluginName = __PLUGIN_NAME__;
-// export const pluginVersion = __PLUGIN_VERSION__;
 
 export const pluginName = packageJson.name;
 export const pluginVersion = packageJson.version;
@@ -53,16 +58,18 @@ export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 		sourcemap: true,
 	},
 	constants: {
+		pluginPath: `node_modules/${pluginName}/dist`,
+		baseUrl: '/',
 		eventPrefix: 'hrm-over-ws',
 		serviceWorker: {
-			scriptPath: '/src/client/script',
+			scriptPath: '/client/script.js',
 			installedHeader: 'service-worker-powered',
 			installPagePath: '/install-service-worker',
 			installPageSources: [
 				'/@vite/client',
-				'/dist/client/install.js',
+				'/client/install.js',
 				'/node_modules/vite/dist/client/env.mjs',
-				'/dist/client/script.js',
+				'/client/script.js',
 			],
 		},
 	},
@@ -77,5 +84,9 @@ export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 	handler: {
 		isModule: true,
 		isExternalServiceWorker: false,
+	},
+	settings: {
+		log: 0,
+		watch: false,
 	},
 });

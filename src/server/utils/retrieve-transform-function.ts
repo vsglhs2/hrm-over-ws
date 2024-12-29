@@ -1,6 +1,6 @@
-import { Connect, ViteDevServer } from 'vite';
+import type { Connect, ViteDevServer } from 'vite';
 
-import { FunctionToAsync } from '@/lib/utils';
+import type { FunctionToAsync } from '@/lib/utils';
 
 const TRANSFORM_FUNCTION_NAME = 'viteTransformMiddleware';
 

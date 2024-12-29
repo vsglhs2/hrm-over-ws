@@ -1,4 +1,4 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
 
 const CACHE_NAME = 'site-cache-v1';
 

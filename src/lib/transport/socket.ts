@@ -1,6 +1,8 @@
-import { Socket, io } from 'socket.io-client';
+import type { Socket} from 'socket.io-client';
+import { io } from 'socket.io-client';
 
-import { TransportOptions, Transport } from './base';
+import type { TransportOptions} from './base';
+import { Transport } from './base';
 
 export type SocketTransportOptions = TransportOptions;
 

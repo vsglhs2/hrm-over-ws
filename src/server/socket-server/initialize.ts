@@ -1,4 +1,5 @@
-import { ServerEnvironment, SocketEnvironment } from '@/lib/environment/server';
+import type { ServerEnvironment} from '@/lib/environment/server';
+import { SocketEnvironment } from '@/lib/environment/server';
 import { createSocketServer } from './create-socket-server';
 import { moduleHandler } from './handlers';
 

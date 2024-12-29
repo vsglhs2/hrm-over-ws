@@ -1,4 +1,4 @@
-import { ServerEnvironment } from '@/lib/environment/server';
+import type { ServerEnvironment } from '@/lib/environment/server';
 import { negotiateHandler } from './handlers';
 
 export function initializeHMRHandlers(this: ServerEnvironment) {

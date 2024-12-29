@@ -1,10 +1,12 @@
-import js from '@eslint/js';
-import stylisticJsPlugin from '@stylistic/eslint-plugin-js';
-import importPlugin from 'eslint-plugin-import';
-import globals from 'globals';
-import ts from 'typescript-eslint';
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-require-imports */
+const js = require('@eslint/js');
+const stylisticJsPlugin = require('@stylistic/eslint-plugin-js');
+const importPlugin = require('eslint-plugin-import');
+const globals = require('globals');
+const ts = require('typescript-eslint');
 
-export default [
+module.exports = [
 	js.configs.recommended,
 	...ts.configs.recommended,
 	{
@@ -14,7 +16,7 @@ export default [
 			'import': importPlugin,
 		},
 		files: ['**/*.{js,mjs,cjs,ts,d.ts}'],
-		ignores: ['node_modules/*', 'dist/*', 'build/*'],
+		ignores: ['node_modules/', 'dist/', 'build/', 'test/'],
 		rules: {
 			'@stylistic/js/eol-last': ['error', 'always'],
 			'@stylistic/js/no-trailing-spaces': ['error'],
@@ -26,6 +28,7 @@ export default [
 			'indent': ['warn', 'tab'],
 
 			'@typescript-eslint/no-unused-vars': 'warn',
+			'@typescript-eslint/consistent-type-imports': 'error',
 
 			'import/order': [
 				'error',

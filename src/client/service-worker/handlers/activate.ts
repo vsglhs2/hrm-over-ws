@@ -1,4 +1,4 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
 
 export function activateHandler(this: ServiceWorkerEnvironment, event: ExtendableEvent) {
 	// console.log('activate');

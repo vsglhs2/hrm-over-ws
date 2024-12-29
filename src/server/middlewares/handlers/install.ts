@@ -1,9 +1,9 @@
-import { Connect,  } from 'vite';
-import { ServerResponse } from 'node:http';
-
-import { ServerEnvironment } from '@/lib/environment/server';
+import type { Connect  } from 'vite';
+import type { ServerResponse } from 'node:http';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+
+import type { ServerEnvironment } from '@/lib/environment/server';
 import { pluginName } from '@/options';
 
 export async function installMiddleware(this: ServerEnvironment,
@@ -29,15 +29,15 @@ export async function installMiddleware(this: ServerEnvironment,
 
 	if (req.url === installPagePath) {
 		const resolvedPath = path.resolve(__dirname, '../../assets/install.html');
-		const resolvedSourcePath = [
+		const resolvedStringPath = [
 			'node_modules',
 			pluginName,
-			'dist/client/install.js'
+			'dist/client/install.js',
 		].join('/');
 
 		const pageString = readFileSync(resolvedPath, {
 			encoding: 'utf-8',
-		}).replace('<%--SCRIPT_SOURCE--%>', resolvedSourcePath);
+		}).replace('<%--SCRIPT_SOURCE--%>', resolvedStringPath);
 
 		const transformedHtml = await this.server.transformIndexHtml(req.url, pageString);
 

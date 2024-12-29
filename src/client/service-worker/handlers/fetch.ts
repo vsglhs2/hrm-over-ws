@@ -1,6 +1,6 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
 
-const urlsToFetch = [
+const whitelist = [
 	/src\/*/,
 	/node_modules\/*/,
 	/@react-refresh/,
@@ -8,16 +8,21 @@ const urlsToFetch = [
 	/index.scss/,
 ];
 
+const blacklist = [
+	/dist\/client\/register\.js/,
+	/dist\/client\/script\.js/,
+	/@vite\/client/,
+];
+
 export function fetchHandler(this: ServiceWorkerEnvironment, event: FetchEvent) {
 	const { request } = event;
 
-	console.log('## fetch from sw:', request.url);
-
 	const isModule =
         request.method.toUpperCase() === 'GET' &&
-        urlsToFetch.some(url => url.test(request.url)) &&
-        // TODO: get rid of it
-        !request.url.includes('src/sw.ts');
+        whitelist.some(url => url.test(request.url)) &&
+        blacklist.every(url => !url.test(request.url));
+
+	console.log('## fetch from sw:', request.url, isModule, performance.now());
 
 	if (isModule) {
 		return event.respondWith(this.moduleHandler.request(request, {

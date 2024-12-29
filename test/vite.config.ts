@@ -6,10 +6,12 @@ export default defineConfig({
   plugins: [
     react(),
     hrmOverWs({
-      watch: true,
+      settings: {
+        watch: true,
+      }
     }),
   ],
-  // Needed to be able to test locally
+  // Necessary to be able to test locally
   resolve: {
     preserveSymlinks: true,
   }

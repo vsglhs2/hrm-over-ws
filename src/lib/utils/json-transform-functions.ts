@@ -23,7 +23,7 @@ function isSerialized(target: string, serializeSign: string) {
 }
 
 export const replacerFunction: ReplacerFunction = function(_, value) {
-	if (typeof value !== 'function') return;
+	if (typeof value !== 'function') return value;
 
 	return serializeFunction(value);
 };
@@ -32,7 +32,7 @@ export const reviverFunction: ReviverFunction = function(_, value) {
 	if (
 		typeof value !== 'string' ||
         !(isSerialized(value, FUNCTION_SIGN))
-	) return;
+	) return value;
 
 	return deserializeFunction(value);
 };

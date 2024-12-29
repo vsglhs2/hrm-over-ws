@@ -1,5 +1,6 @@
 import { getHeadersRecord, concatUInt8Arrays } from '@/lib/utils';
-import { NUMBER_BYTES_LENGTH, ResponseJson } from './utils';
+import type { ResponseJson } from './utils';
+import { NUMBER_BYTES_LENGTH } from './utils';
 import { JsonSerializer } from '../json';
 import { NumberSerializer } from '../number';
 import { Uint8ArraySerialized } from '../uint8array';

@@ -1,4 +1,4 @@
-import { Server } from 'socket.io';
+import type { Server } from 'socket.io';
 
 import { RequestSerializer } from '@/lib/serializer';
 import { ServerEnvironment } from './server';

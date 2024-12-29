@@ -1,5 +1,5 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
-import { ServiceWorkerHandler } from './handlers/handler';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { ServiceWorkerHandler } from './handlers/handler';
 
 export function applyServiceWorkerHandlers(
 	this: ServiceWorkerEnvironment,

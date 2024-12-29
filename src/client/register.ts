@@ -5,15 +5,30 @@ import { PARTIAL_OPTIONS } from '@/lib/environment/client/partial';
 if (import.meta.hot) {
 	const environment = new PartialClientEnvironment(PARTIAL_OPTIONS);
 
-	const baseUrl = import.meta.env.BASE_URL;
-	const scriptUrl = baseUrl + environment.options.constants.serviceWorker.scriptPath;
+	const { pluginPath, baseUrl, serviceWorker: { scriptPath } } = environment.options.constants;
+
+	const url = new URL(pluginPath, location.href);
+	url.pathname += scriptPath;
+
+	const { installedHeader, installPagePath } = environment.options.constants.serviceWorker;
 
 	const registrations = await navigator.serviceWorker.getRegistrations();
 	if (!registrations.length) {
-		document.cookie = `${environment.options.constants.serviceWorker.installedHeader}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+		document.cookie = `${installedHeader}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
 	}
 
-	navigator.serviceWorker.register(scriptUrl, {
+	if (!document.cookie.includes(installedHeader)) {
+		for (const registration of registrations) {
+			await registration.unregister();
+		}
+
+		const url = new URL(window.location.href);
+		url.pathname = installPagePath;
+
+		window.location.href = url.toString();
+	}
+
+	navigator.serviceWorker.register(url, {
 		scope: baseUrl,
 		type: 'module',
 	})

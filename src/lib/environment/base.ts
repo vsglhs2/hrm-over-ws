@@ -1,4 +1,4 @@
-import { PluginOptions } from '@/options';
+import type { PluginOptions } from '@/options';
 import { createEventNamer } from '../utils';
 
 export type EnvironmentOptions = {

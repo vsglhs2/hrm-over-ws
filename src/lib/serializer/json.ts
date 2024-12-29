@@ -1,4 +1,4 @@
-import { ReplacerFunction, ReviverFunction } from '../utils/json-transform-functions';
+import type { ReplacerFunction, ReviverFunction } from '../utils/json-transform-functions';
 import { Uint8ArraySerialized } from './uint8array';
 
 export type JSONValue =

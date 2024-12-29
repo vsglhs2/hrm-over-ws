@@ -1,6 +1,6 @@
-import { TransportOptions } from './base';
-import { HttpFetchTransportOptions } from './http';
-import { PoolTransportOptions } from './pool/base';
+import type { TransportOptions } from './base';
+import type { HttpFetchTransportOptions } from './http';
+import type { PoolTransportOptions } from './pool/base';
 
 export enum TransportVariant {
 	SOCKET_POOL,

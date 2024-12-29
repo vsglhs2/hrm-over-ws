@@ -1,4 +1,4 @@
-import { ServerEnvironment } from '@/lib/environment/server';
+import type { ServerEnvironment } from '@/lib/environment/server';
 import { installMiddleware, serviceWorkerScriptMiddleware } from './handlers';
 import { pluginName } from '@/options';
 
@@ -11,7 +11,7 @@ function setupWatch(environment: ServerEnvironment) {
 	environment.server.watcher.options = {
 		...environment.server.watcher.options,
 		ignored: [
-			new RegExp(`node_modules\/(?!${pluginName}).*`),
+			new RegExp(`node_modules/(?!${pluginName}).*`),
 			'**/.git/**',
 		],
 	};

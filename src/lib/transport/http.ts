@@ -1,4 +1,5 @@
-import { Transport, TransportOptions } from './base';
+import { Transport } from './base';
+import type { TransportOptions } from './base';
 
 export type HttpFetchTransportOptions = TransportOptions;
 

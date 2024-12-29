@@ -1,6 +1,7 @@
-import { ServerEnvironment } from '@/lib/environment/server';
-import { pluginName, pluginVersion } from '@/options';
 import child_process from 'node:child_process';
+
+import type { ServerEnvironment } from '@/lib/environment/server';
+import { pluginName, pluginVersion } from '@/options';
 
 export function createDefines(environment: ServerEnvironment) {
 	return {
@@ -12,7 +13,7 @@ export function createDefines(environment: ServerEnvironment) {
 			JSON.stringify(environment.options.constants.serviceWorker.installPagePath),
 		__SERVICE_WORKER_INSTALL_PAGE_SOURCES__:
 			JSON.stringify(
-				environment.options.constants.serviceWorker.installPageSources
+				environment.options.constants.serviceWorker.installPageSources,
 			),
 		__PLUGIN_VERSION__: JSON.stringify(pluginVersion),
 		__PLUGIN_NAME__: JSON.stringify(pluginName),
@@ -25,7 +26,7 @@ export function createDefines(environment: ServerEnvironment) {
 function buildInjectString(
 	inputFile: string,
 	outputFile: string,
-	defineRecord: Record<string, unknown>
+	defineRecord: Record<string, unknown>,
 ) {
 	const esbuildCommandBase = 'npx esbuild';
 	const defineCommandParts = Object
@@ -34,7 +35,7 @@ function buildInjectString(
 			const commandBase = '--define:';
 			const preparedValue = value;
 
-			return `${commandBase}${key}=\'${preparedValue}\'`;
+			return `${commandBase}${key}='${preparedValue}'`;
 		});
 	const defineCommand = defineCommandParts.join(' ');
 
@@ -58,7 +59,7 @@ export function injectClientDefines(defineRecord: Record<string, string>) {
 		const clientCommand = buildInjectString(
 			inputPath,
 			outputPath,
-			defineRecord
+			defineRecord,
 		);
 		child_process.execSync(clientCommand);
 	}

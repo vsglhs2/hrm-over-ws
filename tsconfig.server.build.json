@@ -35,6 +35,10 @@
   "include": ["src/**/*", "package.json"],
   "exclude": ["node_modules", "src/client/**/*", "src/lib/environment/client/**/*"],
   "buildOptions": {
-    "incremental": false,
+    "incremental": true,
+  },
+  "ts-node": {
+    "swc": true,
+    "transpileOnly": true,
   },
 }

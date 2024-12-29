@@ -1,6 +1,7 @@
-import { PluginOptions } from '@/options';
-import { ClientEnvironment, ClientEnvironmentOptions } from '../client';
-import { PartialClientEnvironmentOptions } from '../partial';
+import type { PluginOptions } from '@/options';
+import { ClientEnvironment } from '../client';
+import type { ClientEnvironmentOptions } from '../client';
+import type { PartialClientEnvironmentOptions } from '../partial';
 
 type ServiceWorkerEnvironmentOptions = ClientEnvironmentOptions & {
     serviceWorker: ServiceWorkerGlobalScope;
@@ -17,7 +18,7 @@ export class ServiceWorkerEnvironment extends ClientEnvironment {
 	declare options: PluginOptions | undefined;
 
 	constructor({ serviceWorker, hot, moduleHandler, partialOptions }: ServiceWorkerEnvironmentOptions) {
-		// @ts-ignore
+		// @ts-expect-error TODO: fix type later
 		super({ options: partialOptions, moduleHandler });
 
 		this.serviceWorker = serviceWorker;

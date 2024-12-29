@@ -1,14 +1,22 @@
-import { Transport } from '@/lib/transport';
+import type { Transport } from '@/lib/transport';
 import { RequestHandler } from './base';
+import type { EventNamer } from '../utils/create-event-namer';
+
+type TransportModuleHandlerOptions = {
+	eventName: EventNamer;
+};
 
 export class TransportModuleHandler extends RequestHandler {
 	protected transport: Transport;
+	protected eventName: EventNamer;
 
-	constructor(transport: Transport) {
+	constructor(transport: Transport, options: TransportModuleHandlerOptions) {
 		super();
 
 		this.transport = transport;
 		this.transport.open();
+
+		this.eventName = options.eventName;
 	}
 
 	public async process(request: Request) {
@@ -17,11 +25,14 @@ export class TransportModuleHandler extends RequestHandler {
 		try {
 			const serialized = this.requestSerializer.serialize(request);
 			const response = await this.transport.sendAndWait(
-				'module',
+				this.eventName('module'),
 				serialized,
 			) as ArrayBuffer;
 
-			return this.responseSerializer.deserialize(new Uint8Array(response));
+			const deserializedResponse = this.responseSerializer.deserialize(new Uint8Array(response));
+			console.log('Got response:', deserializedResponse.status, request.url, performance.now());
+
+			return deserializedResponse;
 		} catch (err) {
 			const error = err instanceof Error
 				? err

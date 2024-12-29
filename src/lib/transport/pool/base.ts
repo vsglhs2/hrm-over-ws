@@ -1,6 +1,7 @@
 
 import { Balancer } from './balancer';
-import { TransportOptions, Transport } from '../base';
+import type { TransportOptions} from '../base';
+import { Transport } from '../base';
 
 export type PoolTransportOptions = TransportOptions & {
     poolAmount: number;
@@ -54,7 +55,7 @@ export class PoolTransport extends Transport {
 	public async sendAndWait(type: string, payload: unknown): Promise<unknown> {
 		const index = this.balancer.next();
 		const transport = this.transports[index];
-		console.log('# sended and waited by: ', index);
+		console.log('# sended and waited by: ', index, performance.now());
 
 		return transport.sendAndWait(type, payload);
 	}

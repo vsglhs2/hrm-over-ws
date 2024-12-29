@@ -1,8 +1,10 @@
-import { Plugin } from 'vite';
+import type { Plugin } from 'vite';
 
 import { ServerEnvironment } from '@/lib/environment/server';
-import { RecursivePartial, resolveOptions } from '@/lib/utils';
-import { getDefaultOptions, pluginName, pluginVersion, PluginOptions } from '@/options';
+import type { RecursivePartial} from '@/lib/utils';
+import { resolveOptions } from '@/lib/utils';
+import type { PluginOptions } from '@/options';
+import { getDefaultOptions, pluginName, pluginVersion } from '@/options';
 import { initializeHMR } from './hmr';
 import { initializeServer } from './middlewares/initialize';
 import { initializeSocketServer } from './socket-server/initialize';
@@ -23,6 +25,30 @@ export default function hrmOverSocketPlugin(
 		config(config) {
 			const defaultOptions = getDefaultOptions(config);
 			resolvedOptions = resolveOptions(options, defaultOptions);
+		},
+
+		transformIndexHtml: {
+			handler(_, context) {
+				if (context.path.includes(
+					resolvedOptions.constants.serviceWorker.installPagePath,
+				)) return;
+
+				const resolvedStringPath = [
+					'node_modules',
+					pluginName,
+					'dist/client/register.js',
+				].join('/');
+
+				return [{
+					tag: 'script',
+					injectTo: 'body-prepend',
+					attrs: {
+						src: resolvedStringPath,
+						type: 'module',
+					},
+				}];
+			},
+			order: 'pre',
 		},
 
 		configureServer(server) {

@@ -1,5 +1,6 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
-import { ServiceWorkerMessage, ServiceWorkerMessageType } from './utils';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { ServiceWorkerMessage} from './utils';
+import { ServiceWorkerMessageType } from './utils';
 
 export function messageHandler(this: ServiceWorkerEnvironment, event: ExtendableMessageEvent) {
 	const data = event.data as ServiceWorkerMessage;

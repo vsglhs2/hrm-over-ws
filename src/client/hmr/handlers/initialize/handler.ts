@@ -3,10 +3,10 @@ import { isSameObject } from '@/lib/utils';
 import { createTransport } from './create-transport';
 import { JsonSerializer } from '@/lib/serializer';
 import { reviverFunction } from '@/lib/utils/json-transform-functions';
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
-import { PluginOptions } from '@/options';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { PluginOptions } from '@/options';
 
-export function initializationHandler(this: ServiceWorkerEnvironment, optionsBuffer: ArrayBuffer) {
+export function initializationHandler(this: ServiceWorkerEnvironment, optionsBuffer: number[]) {
 	const jsonSerializer = new JsonSerializer({
 		reviver: reviverFunction,
 	});
@@ -29,10 +29,12 @@ export function initializationHandler(this: ServiceWorkerEnvironment, optionsBuf
 	console.log('Closed previous handler: ', oldHandler.constructor.name);
 
 	const transport = createTransport(options.transport.variant, options.transport.options);
-	this.moduleHandler = new TransportModuleHandler(transport);
+	this.moduleHandler = new TransportModuleHandler(transport, {
+		eventName: this.eventName,
+	});
 	this.options = options;
 
-	console.log('Created new handler: ', oldHandler.constructor.name);
+	console.log('Created new handler: ', this.moduleHandler.constructor.name);
 
 	if (oldHandler instanceof BufferedHandler) {
 		oldHandler.transfer(request => this.moduleHandler.request(request));

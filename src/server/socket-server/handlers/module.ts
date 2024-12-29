@@ -1,8 +1,9 @@
-import httpMocks, { RequestMethod } from 'node-mocks-http';
-import { ServerResponse } from 'node:http';
-import { Connect } from 'vite';
+import type { RequestMethod } from 'node-mocks-http';
+import httpMocks from 'node-mocks-http';
+import type { ServerResponse } from 'node:http';
+import type { Connect } from 'vite';
 
-import { SocketEnvironment } from '@/lib/environment/server';
+import type { SocketEnvironment } from '@/lib/environment/server';
 import { getHeadersRecord } from '@/lib/utils';
 import { retrieveTransformFunctionFromServer } from '@/server/utils';
 

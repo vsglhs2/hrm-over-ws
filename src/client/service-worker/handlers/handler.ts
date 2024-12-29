@@ -1,4 +1,4 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
 
 export type ServiceWorkerHandler<
     Type extends keyof ServiceWorkerGlobalScopeEventMap

@@ -1,5 +1,6 @@
-import { RequestHandler } from '@/lib/handler';
-import { Environment, EnvironmentOptions } from '../base';
+import type { RequestHandler } from '@/lib/handler';
+import type { EnvironmentOptions } from '../base';
+import { Environment } from '../base';
 
 export type ClientEnvironmentOptions = EnvironmentOptions & {
 	moduleHandler: RequestHandler;

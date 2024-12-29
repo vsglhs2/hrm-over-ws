@@ -1,6 +1,8 @@
 
-import { TransportConfig, TransportVariant } from '@/lib/transport/types';
-import { UserConfig } from 'vite';
+import type { UserConfig } from 'vite';
+
+import type { TransportConfig} from '@/lib/transport/types';
+import { TransportVariant } from '@/lib/transport/types';
 import packageJson from '../package.json';
 
 export type PluginFeatures = {
@@ -67,8 +69,9 @@ export const getDefaultOptions = (config: UserConfig): PluginOptions => ({
 			installPagePath: '/install-service-worker',
 			installPageSources: [
 				'/@vite/client',
-				'/client/install.js',
 				'/node_modules/vite/dist/client/env.mjs',
+				'/client/install.js',
+				'/client/register.js',
 				'/client/script.js',
 			],
 		},

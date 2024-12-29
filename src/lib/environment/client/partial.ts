@@ -1,5 +1,5 @@
 import { createEventNamer } from '@/lib/utils';
-import { PluginOptions } from '@/options';
+import type { PluginOptions } from '@/options';
 
 export type PartialClientEnvironmentOptions = {
     options: Pick<PluginOptions, 'constants'>;

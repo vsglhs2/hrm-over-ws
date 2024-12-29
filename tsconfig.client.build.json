@@ -10,6 +10,7 @@
     ],
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
     "sourceMap": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -40,6 +41,10 @@
     "src/index.ts"
   ],
   "buildOptions": {
-    "incremental": false,
+    "incremental": true,
+  },
+  "ts-node": {
+    "swc": true,
+    "transpileOnly": true,
   },
 }

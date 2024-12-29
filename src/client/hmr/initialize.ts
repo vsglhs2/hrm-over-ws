@@ -1,5 +1,5 @@
-import { ServiceWorkerEnvironment } from '@/lib/environment/client';
-import { ServiceWorkerHandler } from '../service-worker/handlers/handler';
+import type { ServiceWorkerEnvironment } from '@/lib/environment/client';
+import type { ServiceWorkerHandler } from '../service-worker/handlers/handler';
 
 export function applyHMRHandlers(
 	this: ServiceWorkerEnvironment,
@@ -7,8 +7,8 @@ export function applyHMRHandlers(
 ) {
 	for (const handler of handlers) {
 		this.hot.on(
-			handler.type,
-			handler.listener,
+			this.eventName(handler.type),
+			handler.listener.bind(this),
 		);
 	}
 }

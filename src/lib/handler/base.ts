@@ -1,5 +1,6 @@
 import { RequestSerializer, ResponseSerializer } from '@/lib/serializer';
-import { RecursivePartial, resolveOptions } from '../utils';
+import type { RecursivePartial} from '../utils';
+import { resolveOptions } from '../utils';
 
 export type RequestState = {
     request: Request;

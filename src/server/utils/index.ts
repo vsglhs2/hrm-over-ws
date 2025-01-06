@@ -1,2 +1,2 @@
-export { injectClientDefines, createDefines } from './inject-defines';
+export { createDefines } from './create-defines';
 export { retrieveTransformFunctionFromServer } from './retrieve-transform-function';

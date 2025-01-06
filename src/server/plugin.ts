@@ -8,7 +8,7 @@ import { getDefaultOptions, pluginName, pluginVersion } from '@/options';
 import { initializeHMR } from './hmr';
 import { initializeServer } from './middlewares/initialize';
 import { initializeSocketServer } from './socket-server/initialize';
-import { createDefines, injectClientDefines } from './utils';
+import { createDefines } from './utils';
 
 export default function hrmOverSocketPlugin(
 	options: RecursivePartial<PluginOptions> = {},
@@ -25,6 +25,12 @@ export default function hrmOverSocketPlugin(
 		config(config) {
 			const defaultOptions = getDefaultOptions(config);
 			resolvedOptions = resolveOptions(options, defaultOptions);
+
+			const defineRecord = createDefines(resolvedOptions);
+
+			return {
+				define: defineRecord,
+			};
 		},
 
 		transformIndexHtml: {
@@ -36,7 +42,7 @@ export default function hrmOverSocketPlugin(
 				const resolvedStringPath = [
 					'node_modules',
 					pluginName,
-					'dist/client/register.js',
+					'dist/assets/register.js',
 				].join('/');
 
 				return [{
@@ -60,8 +66,6 @@ export default function hrmOverSocketPlugin(
 				server,
 			});
 
-			const defineRecord = createDefines(environment);
-			injectClientDefines(defineRecord);
 			initializeServer.call(environment);
 			initializeSocketServer.call(environment);
 			initializeHMR.call(environment);

@@ -28,11 +28,11 @@ export async function installMiddleware(this: ServerEnvironment,
 	}
 
 	if (req.url === installPagePath) {
-		const resolvedPath = path.resolve(__dirname, '../../assets/install.html');
+		const resolvedPath = path.resolve(__dirname, './assets/install.html');
 		const resolvedStringPath = [
 			'node_modules',
 			pluginName,
-			'dist/client/install.js',
+			'dist/assets/install.js',
 		].join('/');
 
 		const pageString = readFileSync(resolvedPath, {

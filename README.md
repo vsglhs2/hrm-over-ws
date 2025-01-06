@@ -8,7 +8,9 @@ This plugin is a proof of concept and primary just side project of me to trying 
 
 # TODO
 
--   does defines even needed?
+-   rewrite build.mjs using js apis instead of using cli through exec
+-   change all file paths to constants and move scripts from package.json to js scripts
+-   does defines even needed? - ok
 -   use server.transformRequest instead of using mocks and retrieving transform middleware
 -   figure out why direct default import doesn't work when trying to test plugin
 -   fix vite-env.d.ts file (it is not being referenced by ts somehow) - ok

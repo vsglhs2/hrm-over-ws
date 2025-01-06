@@ -4,13 +4,13 @@ const whitelist = [
 	/src\/*/,
 	/node_modules\/*/,
 	/@react-refresh/,
-	/client/,
+	/assets/,
 	/index.scss/,
 ];
 
 const blacklist = [
-	/dist\/client\/register\.js/,
-	/dist\/client\/script\.js/,
+	/dist\/assets\/register\.js/,
+	/dist\/assets\/script\.js/,
 	/@vite\/client/,
 ];
 

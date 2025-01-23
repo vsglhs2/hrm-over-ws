@@ -14,7 +14,7 @@ This plugin is a proof of concept and primary just side project of me to trying 
 -   use server.transformRequest instead of using mocks and retrieving transform middleware
 -   figure out why direct default import doesn't work when trying to test plugin
 -   fix vite-env.d.ts file (it is not being referenced by ts somehow) - ok
--   add linter
+-   add linter - ok
 -   sometimes server doesn't get negotiation message
 -   need gracefully update service worker
 -   handler swap mechanism that can transfer pending requests. Add some ready close events to transport
@@ -28,10 +28,11 @@ This plugin is a proof of concept and primary just side project of me to trying 
 -   handle caching (integrate caching middleware for early 304)
 -   fetch code without source map initially?
 -   check socket pool - ok
--   do service worker injection before able to load page
--   make plugin to be able run standalone
--   split code
+-   do service worker injection before able to load page - ok
+-   make plugin to be able run standalone - ok
+-   split code - ok
 -   refactor server-side
+-   refactor client-side
 -   check on remote server (work with origin, base_url and etc) (code-server especially)
 -   add option to turnoff source maps
 -   add custom logger

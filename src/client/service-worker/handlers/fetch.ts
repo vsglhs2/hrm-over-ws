@@ -4,15 +4,12 @@ const whitelist = [
 	/src\/*/,
 	/node_modules\/*/,
 	/@react-refresh/,
+	/@vite\/client/,
 	/assets/,
 	/index.scss/,
 ];
 
-const blacklist = [
-	/dist\/assets\/register\.js/,
-	/dist\/assets\/script\.js/,
-	/@vite\/client/,
-];
+const blacklist: RegExp[] = [];
 
 export function fetchHandler(this: ServiceWorkerEnvironment, event: FetchEvent) {
 	const { request } = event;

@@ -15,7 +15,7 @@ export function negotiateHandler(this: ServerEnvironment) {
 	this.server.ws.send(this.eventName('initialization'), serializedOptionsArray);
 	console.log('Send initialization message');
 
-	const moduleUrls = Array.from(this.server.moduleGraph.urlToModuleMap.keys());
-	this.server.ws.send(this.eventName('prefetch'), moduleUrls);
-	console.log('Send module urls message');
+	// const moduleUrls = Array.from(this.server.moduleGraph.urlToModuleMap.keys());
+	// this.server.ws.send(this.eventName('prefetch'), moduleUrls);
+	// console.log('Send module urls message');
 }

@@ -12,11 +12,8 @@
   "version": "0.0.1",
   "type": "commonjs",
   "scripts": {
-    "dev": "concurrently \"npm run watch\" \"npm run playground\"",
-    "playground": "cd playground && npm run dev",
     "watch": "nodemon --config nodemon.json",
     "build": "node build.mjs",
-    "install": "cd playground && npm i",
     "lint": "eslint . --ignore-pattern \"test/*\" --ignore-pattern \"dist/*\"",
     "lint:fix": "eslint --fix . --ignore-pattern \"test/*\" --ignore-pattern \"dist/*\""
   },

@@ -13,7 +13,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "vite-plugin-hrm-over-ws": "file:~/Projects/hrm-over-ws",
+    "vite-plugin-hrm-over-ws": "file:../plugin",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@vitejs/plugin-react": "^1.3.0",

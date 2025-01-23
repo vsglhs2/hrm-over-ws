@@ -6,6 +6,48 @@ When i was trying to use code-server remotely and ran vite powered app, i faced 
 
 This plugin is a proof of concept and primary just side project of me to trying to improve experience for my own use case. I can assume that it can be helpful for some people, but i think in most cases there is a problem with slowness in local environment caused by 1000+ requests. It is well know problem with vite, but as it is part of its core decisions (transform modules on fly with ESM modules), there not so much to do without trying to make it to be more webpack like and it is not issue i target by this project. Some performance gains in theory can be accomplished, though, but it is not feasible to say if it could work well enough.
 
+# Scripts
+
+## Plugin
+```
+cd plugin
+```
+
+### Install
+```
+npm i
+```
+
+### Build
+```
+npm run build
+```
+
+### Watch
+```
+npm run watch
+```
+
+## Playground
+```
+cd playground
+```
+
+### Install
+```
+npm i
+```
+
+### Dev
+```
+npm run dev
+```
+
+### Build
+```
+npm run build
+```
+
 # TODO
 
 -   rewrite build.mjs using js apis instead of using cli through exec

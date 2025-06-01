@@ -1,10 +1,10 @@
 # Motivation
 
-When i was trying to use code-server remotely and ran vite powered app, i faced a major problem - page loading and reloading with 250+ files takes about a minute due request fetching speed, which is totally unacceptable when trying to reach decent remote dev experience. Even when server gives 304 response, each request still required to make full roundtrip and it is take a lot of time. And sequential nature of vite module processing is what makes it even worse in described case. So to address this issue, i started to work on this plugin.
+During attempt to use code-server remotely and running vite powered app, page loading and reloading with 250+ files takes around a minute due request fetching speed. Even when server gives 304 response (not modified), each request still required to make full roundtrip and it is take a lot of time. This plugin is trying to address this issue
 
 # State
 
-This plugin is a proof of concept and primary just side project of me to trying to improve experience for my own use case. I can assume that it can be helpful for some people, but i think in most cases there is a problem with slowness in local environment caused by 1000+ requests. It is well know problem with vite, but as it is part of its core decisions (transform modules on fly with ESM modules), there not so much to do without trying to make it to be more webpack like and it is not issue i target by this project. Some performance gains in theory can be accomplished, though, but it is not feasible to say if it could work well enough.
+This plugin is a proof of concept to trying to improve experience for concrete use case. It can be helpful for some people, but i think in most cases there is a problem with slowness in local environment caused by 1000+ requests. It is well known problem with vite, but as it is part of its core (transform modules on fly with ESM modules), there is not so much to do without trying to make it to be more webpack like and it is not issue targeted by this project. In teory, some performance gains can be accomplished, though, but it is not feasible to say if it could work well enough.
 
 # Scripts
 
